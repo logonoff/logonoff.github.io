@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>vowel capitalizer</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../shale.css">
+		<style>
+			html, body, input {
+				font-family: sans-serif;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="a" contenteditable>text</div>
+
+		<button class="button" onclick="meme()">fix text</button>
+		<script>
+			function meme() {
+				document.getElementById("a").innerHTML = document.getElementById("a").innerHTML.replaceAll("a", "A")
+				                                                                               .replaceAll("e", "E")
+				                                                                               .replaceAll("i", "I")
+				                                                                               .replaceAll("o", "O")
+				                                                                               .replaceAll("u", "U")
+				                                                                               .replaceAll("B", "b")
+				                                                                               .replaceAll("C", "c")
+				                                                                               .replaceAll("D", "d")
+				                                                                               .replaceAll("F", "f")
+				                                                                               .replaceAll("G", "g")
+				                                                                               .replaceAll("H", "h")
+				                                                                               .replaceAll("J", "j")
+				                                                                               .replaceAll("K", "k")
+				                                                                               .replaceAll("L", "l")
+				                                                                               .replaceAll("M", "m")
+				                                                                               .replaceAll("N", "n")
+				                                                                               .replaceAll("P", "p")
+				                                                                               .replaceAll("Q", "q")
+				                                                                               .replaceAll("R", "r")
+				                                                                               .replaceAll("S", "s")
+				                                                                               .replaceAll("T", "t")
+				                                                                               .replaceAll("V", "v")
+				                                                                               .replaceAll("W", "w")
+				                                                                               .replaceAll("X", "x")
+				                                                                               .replaceAll("Y", "y")
+				                                                                               .replaceAll("Z", "z");
+
+			// random accent every time, why not
+			document.querySelector(':root').style.setProperty('--a-r', Math.floor(Math.random() * 256));
+			document.querySelector(':root').style.setProperty('--a-g', Math.floor(Math.random() * 256));
+			document.querySelector(':root').style.setProperty('--a-b', Math.floor(Math.random() * 256));
+		}
+		</script>
+
+		</body>
+</html>

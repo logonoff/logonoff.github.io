@@ -1,0 +1,168 @@
+<!doctype html>
+<html class="no-js" lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>:b:ruh mode activated</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="../shale.css">
+		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="jquery-ui.min.css">
+	</head>
+	<body>
+		<div id="draggy-thing" hidden></div>
+		<div class="window" id="window-1">
+			<div class="titlebar">
+				<span class="captions">
+					<div class="min" onclick="$(this).minim();"></div>
+					<div class="max" onclick="$(this).maxim();"></div>
+					<div class="close" onclick="$(this).close();"></div>
+				</span>
+
+				<span style="display:flex;justify-content:space-between;position:relative;top:15px">
+					<span>
+					<img src="img/Bitmap128.png" style="display:inline-block"/>
+					<img src="img/Bitmap154.png" style="display:inline-block;margin-left:-4px"/>
+					<span class="title" style="float: none;position:relative;bottom:15px;font-size: 1.25em">School Project</span>
+					</span>
+					<img src="img/Bitmap170.png"width=42 height=43 style="position:relative;left:69px"/>
+				</span>
+				&nbsp;
+			</div>
+
+			<div class="content">
+				<div class="header-panel">
+					<div class="aurora-panel" aria-hidden="true">
+						<span class="aurora left" ></span>
+						<span class="aurora right"></span>
+						<span class="aurora left2"></span>
+					</div>
+					<div class="aurora-content">
+						<div style="margin-top: 5px">&emsp;File&emsp;&emsp;Edit&emsp;&emsp;View&emsp;&emsp;Tools&emsp;&emsp;Help</div>
+						<img src="img/folder.png" style="opacity: 0.25; z-index: 0; position: absolute; max-height: 200px;padding-top:1em;"/>
+						<div style="margin-top: 100px; font-size: 1.5em; margin-left: 1em; z-index: 1;">
+							<span style="font-size:2em;">3</span> items<br>
+							<span style="font-size:1rem;">in this folder</span>
+						</div>
+
+					</div>
+				</div>
+				<div class="grid-thingy">
+					<div class="sidebar">
+						<input type="text" placeholder="Filter By"><br>
+						Something Lol
+					</div>
+					<div class="main">
+						<div class="item">
+							<img src="img/folder.png" style="max-height: 48px; float:left; padding-right: 0.5em"/>
+							Graphs<br><br>
+						</div>
+						<div class="item">
+							<img src="img/folder.png" style="max-height: 48px; float:left; padding-right: 0.5em"/>
+							Stats<br><br>
+						</div>
+						<div class="item">
+							<img src="img/docx.svg" style="max-height: 48px; max-width:48px; float:left;  padding-right: 0.5em"/>
+							Botany Report.docx<br>
+							Microsoft Word Document<br>
+						</div>
+						<div class="item">
+							<img src="img/music.png" style="max-height: 48px; float:left; padding-right: 0.5em"/>
+							Music.mid<br>
+							MIDI Sequence<br>
+						</div>
+						<div class="item">
+							<img src="img/text.png" style="max-height: 48px; float:left; padding-right: 0.5em"/>
+							notes.md<br>
+							Markdown Source File<br>
+						</div>
+						<div class="item">
+							<img src="img/adobe-pdf-icon.svg" style="max-height: 48px; float:left; padding-right: 0.5em"/>
+							Tulips Whitepaper 2017.pdf<br>
+							PDF Document<br>
+						</div>
+						<div class="item">
+							<img src="img/Tulips.jpg" style="max-height: 48px; float:left; padding-right: 0.5em"/>
+							Tulips.jpg<br>
+							JPG file<br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="window " id="window-2">
+			<div class="titlebar">
+				<span class="title"><img src="img/logo.png" style="max-height:16px; max-width: 16px;"/>
+					<span class="title-text">&emsp;About WinDonalds
+					</span>
+					</span>
+				&nbsp;
+				<span class="captions">
+					<div class="min" onclick="$(this).minim();"></div>
+					<div class="max" onclick="$(this).maxim();"></div>
+					<div class="close" onclick="$(this).close();"></div>
+				</span>
+
+			</div>
+
+			<div class="content">
+				<div class="header-panel">
+					<img src="windonalds_about.png" width="413px" height="77px"/><br>
+				</div>
+				<div class="words">
+					WinDonalds® <br><br>
+					Combo 1.0 (2 Large Cokes, 4 Fries, and 8 Big Macs)<br>
+					Copyright© 2007 McDonalds Corporation. All rights reserved.
+					The WinDonalds McVista™ edible object and its edible
+					substance are protected by trademark and other pending or
+					existing intellectual property rights in the United States and other
+					countries.
+					<br>
+					<br>
+					This product is licenced under the <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+					McDonalds Food Safety Licence Terms</a> to:
+					<br>
+					&emsp;yourStomach™
+					<hr>
+					Total physical weight gained to your Body®: 3,144,280 LB
+					<br>
+					<a class="button" onclick="$(this).closest('.window').remove();" style="float:right;">OK</a>
+					<br>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="window" id="window-3">
+			<div class="titlebar">
+				<span class="title">
+					<span class="title-text">&emsp;Start
+					</span>
+					</span>
+				&nbsp;
+				<span class="captions">
+					<div class="min" onclick="$(this).minim();"></div>
+					<div class="max" onclick="$(this).maxim();"></div>
+					<div class="close" onclick="$(this).close();"></div>
+				</span>
+
+			</div>
+
+			<div class="content" style="overflow: hidden;">
+				<iframe src="screen/index.html" height="100%" width="100%"></iframe>
+			</div>
+		</div> -->
+
+		<footer class="taskbar">
+			<img src="start.png"/>
+			<span id="time"></span>
+		</footer>
+
+		<script src="jquery-3.5.0.min.js"></script>
+		<script src="jquery-ui.min.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>

@@ -1,0 +1,14 @@
+<html>
+	<body>
+		<script>
+			function changeBackground() {
+				document.body.style.background = location.hash.substring(1);
+			}
+		
+			window.onhashchange = function() {  changeBackground(); }
+
+			changeBackground();
+		</script>
+	</body>
+	
+</html>

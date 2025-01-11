@@ -1,0 +1,16 @@
+{
+  "short_name": "logonoff",
+  "name": "logonoff",
+  "theme_color": "#01579B",
+  "background_color": "#01579B",
+  "display": "standalone",
+  "start_url": "index.html",
+  "orientation": "portrait",
+  "icons": [
+    {
+    "src": "Profile/android-icon-512x512.png",
+    "type": "image/png",
+    "sizes": "512x512"
+    }
+  ]
+}

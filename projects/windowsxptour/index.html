@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Windows XP Tour Simulator</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="https://unpkg.com/xp.css" />
+		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="jquery-ui.min.css">
+	</head>
+	<body>
+		<div id="draggy-thing" hidden></div>
+
+		<div class="window active" id="window-1" style="position: relative; left: calc(50vw - 251.5px); top: calc(50vh - 196.5px);" onmousedown="$('.task.window-1, #window-1').addClass('active');" onclick="$('.task.window-1, #window-1').addClass('active');">
+			<div class="title-bar">
+				<div class="title-bar-text">
+					<img alt src="img/touricon.png" style="max-height:16px; max-width: 16px; vertical-align: bottom;"/>
+					Windows XP Tour
+				</div>
+
+				<div class="title-bar-controls">
+					<button aria-label="Close" onclick="$(this).close();$('.window-1').remove();"></button>
+				</div>
+			</div>
+
+			<div class="window-body">
+				<section class="body">
+					<div class="sideimg">
+						<img src="img/side.png" alt>
+					</div>
+
+					<div class="content">
+						<h2>Welcome to the Windows XP Tour!</h2>
+						<p>
+							<span class="line">The tour is available in two formats. Which format do you</span>
+							<span class="line">prefer?</span>
+						</p>
+
+						<div class="field-row">
+							<input id="flash" type="radio" name="tour-choice">
+							<label for="flash"><span>
+								<span class="line">Play the animated tour that features text, animation, </span>
+								<span class="line">music, and voice narriation.</span>
+							</span></label>
+						</div>
+
+						<div class="field-row">
+							<input id="html" type="radio" name="tour-choice">
+							<label for="html"><span>
+								<span class="line">Play the non-animated tour that features text and images</span>
+								<span class="line">only.</span>
+							</span></label>
+						</div>
+					</div>
+				</section>
+
+				<section class="buttons">
+				  <button disabled>< Back</button>&nbsp;
+				  <button onclick="submit();">Next ></button>&nbsp;&nbsp;&nbsp;
+				  <button onclick="$(this).close();$('.window-1').remove();">Cancel</button>
+				</section>
+			</div>
+
+		</div>
+
+		<footer class="taskbar">
+			<span id="start"></span>
+			<a class="task window-1 active" onclick="$('.task.window-1, #window-1').addClass('active');"><img alt src="img/touricon.png" style="max-height:16px; max-width: 16px; vertical-align: middle;"/>&nbsp;Windows XP Tour</a>
+			<span id="time"></span>
+		</footer>
+
+		<script src="jquery-3.5.0.min.js"></script>
+		<script src="jquery-ui.min.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>

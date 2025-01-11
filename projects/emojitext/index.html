@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>emojitext</title>
+		<meta name="description" content="Convert text to aligned emojis that spell out the text for Discord">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../shale.css">
+		<style>
+			html, body, input {
+				font-family: sans-serif;
+			}
+		</style>
+	</head>
+
+	<body>
+		<form action="" onsubmit="meme();return false">
+			<input type="text" id="input" name="input" placeholder="input" onkeyup="meme();" onkeydown="meme();" onkeypress="meme();" pattern="^[a-zA-Z0-9 ]+$"><br><br>
+			<input type="text" id="emoji" name="emoji" placeholder="emoji" onkeyup="meme();" onkeydown="meme();" onkeypress="meme();" required><br><br>
+			<input class="button" type="submit" value="pain"/>
+		</form>
+
+		<pre id="text" contenteditable></pre>
+
+		<script>
+			// remove form resubmit dialog - https://stackoverflow.com/a/45656609/
+			if ( window.history.replaceState ) {
+				window.history.replaceState( null, null, window.location.href );
+			}
+
+			// update pre with input
+			function meme() {
+				const space = '   ';
+				const text = Array.from(document.getElementById("input").value);
+				const emoji = document.getElementById("emoji").value;
+
+				document.getElementById("text").innerHTML = "";
+
+				lines = [[], [], [], [], [], [], [], []]
+
+				text.forEach((char, index) => {
+					pixel = getLetter(char).split("\n");
+					lines[0] = "."; // for discord compact mode
+					for (let i = 1; i <= 8; i++) {
+						lines[i] += pixel[i] + "0";
+					}
+				});
+
+				lines.forEach((line, i) => {
+					if (line.includes("1") || line.includes(".") || line.includes("2")) {
+						lines[i] = line.replaceAll("0", " ").trimRight().replaceAll(" ", space).replaceAll("2", space).replaceAll("1", emoji).replaceAll("undefined", "");
+
+						document.getElementById("text").innerHTML += lines[i] + "<br>";
+					}
+				});
+
+				// random accent every time, why not
+				document.querySelector(':root').style.setProperty('--a-r', Math.floor(Math.random() * 256));
+				document.querySelector(':root').style.setProperty('--a-g', Math.floor(Math.random() * 256));
+				document.querySelector(':root').style.setProperty('--a-b', Math.floor(Math.random() * 256));
+			}
+
+			// 0: space, 1: emoji, 2: non-stripping space
+			function getLetter(letter) {
+				switch (letter) {
+					case " ":
+						return `
+0
+0
+0
+0
+0
+0
+0
+0`
+					case "0":
+						return `
+01110
+10001
+10011
+10101
+11001
+10001
+01110
+00000`
+						break;
+					case "1":
+						return `
+00100
+01100
+00100
+00100
+00100
+00100
+11111
+00000`
+						break;
+					case "2":
+						return `
+011100
+100011
+000010
+001100
+010000
+100011
+111110
+000000`
+						break;
+					case "3":
+						return `
+11100
+00010
+00010
+01100
+00010
+00010
+11100
+00000`
+						break;
+					case "4":
+						return `
+00011
+00101
+01001
+10001
+11111
+00001
+00001
+00000`
+						break;
+					case "5":
+						return `
+11111
+10000
+11110
+00001
+00001
+00001
+11110
+00000`
+						break;
+					case "6":
+						return `
+00110
+01000
+10000
+11110
+10001
+10001
+01110
+00000`
+						break;
+					case "7":
+						return `
+11111
+10001
+00001
+00010
+00100
+00100
+00100
+00000`
+						break;
+					case "8":
+						return `
+01110
+10001
+10001
+01110
+10001
+10001
+01110
+00000`
+						break;
+					case "9":
+						return `
+01110
+10001
+10001
+01111
+00001
+00010
+01100
+00000`
+						break;
+
+					case "a":
+						return `
+00000
+00000
+01110
+00001
+01111
+10001
+01111
+00000`
+						break;
+
+					case "b":
+						return `
+10000
+10000
+10110
+11001
+10001
+10001
+11110
+00000`
+						break;
+
+					case "c":
+						return `
+00000
+00000
+01110
+10001
+10000
+10001
+01110
+00000`
+						break;
+
+					case "d":
+						return `
+00001
+00001
+01101
+10011
+10001
+10001
+01111
+00000`
+						break;
+
+					case "e":
+						return `
+00000
+00000
+01110
+10001
+11111
+10000
+01111
+00000`
+						break;
+
+					case "f":
+						return `
+0011
+0100
+1111
+0100
+0100
+0100
+0100
+0000`
+						break;
+
+					case "g":
+						return `
+00000
+00000
+01111
+10001
+10001
+01111
+00001
+11110`
+						break;
+
+					case "h":
+						return `
+10000
+10000
+10110
+11001
+10001
+10001
+10001
+00000`
+						break;
+
+					case "i":
+						return `
+1
+2
+1
+1
+1
+1
+1
+0`
+						break;
+
+					case "j":
+						return `
+00001
+22222
+00001
+00001
+00001
+10001
+10001
+01110`
+						break;
+
+					case "k":
+						return `
+1000
+1000
+1001
+1010
+1100
+1010
+1001
+0000`
+						break;
+
+					case "l":
+						return `
+10
+10
+10
+10
+10
+10
+01
+00`
+						break;
+
+					case "m":
+						return `
+00000
+00000
+11010
+10101
+10101
+10001
+10001
+00000`
+						break;
+
+					case "n":
+						return `
+00000
+00000
+11110
+10001
+10001
+10001
+10001
+00000`
+						break;
+
+					case "o":
+						return `
+00000
+00000
+01110
+10001
+10001
+10001
+01110
+00000`
+						break;
+
+					case "p":
+						return `
+00000
+00000
+10110
+11001
+10001
+11110
+10000
+10000`
+						break;
+
+					case "q":
+						return `
+00000
+00000
+01101
+10011
+10001
+01111
+00001
+00001`
+						break;
+
+					case "r":
+						return `
+00000
+00000
+10110
+11001
+10000
+10000
+10000
+00000`
+						break;
+
+					case "s":
+						return `
+00000
+00000
+01111
+10000
+01110
+00001
+11110
+00000`
+						break;
+
+					case "t":
+						return `
+010
+010
+111
+010
+010
+010
+001
+000`
+						break;
+
+					case "u":
+						return `
+00000
+00000
+10001
+10001
+10001
+10001
+01111
+00000`
+						break;
+
+					case "v":
+						return `
+00000
+00000
+10001
+10001
+10001
+01010
+00100
+00000`
+						break;
+
+					case "w":
+						return `
+00000
+00000
+10001
+10001
+10101
+10101
+01111
+00000`
+						break;
+
+					case "x":
+						return `
+00000
+00000
+10001
+01010
+00100
+01010
+10001
+00000`
+						break;
+
+					case "y":
+						return `
+00000
+00000
+10001
+10001
+10001
+01111
+00001
+11110`
+						break;
+
+					case "z":
+						return `
+00000
+00000
+11111
+00010
+00100
+01000
+11111
+00000`
+						break;
+
+					case "A":
+						return `
+01110
+10001
+11111
+10001
+10001
+10001
+10001
+00000`
+						break;
+
+					case "B":
+						return `
+11110
+10001
+11110
+10001
+10001
+10001
+11110
+00000`
+						break;
+
+					case "C":
+						return `
+01110
+10001
+10000
+10000
+10000
+10001
+01110
+00000`
+						break;
+
+					case "D":
+						return `
+11110
+10001
+10001
+10001
+10001
+10001
+11110
+00000`
+						break;
+
+					case "E":
+						return `
+11111
+10000
+11100
+10000
+10000
+10000
+11111
+00000`
+						break;
+
+					case "F":
+						return `
+11111
+10000
+11100
+10000
+10000
+10000
+10000
+00000`
+						break;
+
+					case "G":
+						return `
+01111
+10000
+10011
+10001
+10001
+10001
+01110
+00000`
+						break;
+
+					case "H":
+						return `
+10001
+10001
+11111
+10001
+10001
+10001
+10001
+00000`
+						break;
+
+					case "I":
+						return `
+111
+010
+010
+010
+010
+010
+111
+000`
+						break;
+
+					case "J":
+						return `
+000001
+000001
+000001
+000001
+000001
+010001
+001110
+000000`
+						break;
+
+					case "K":
+						return `
+10001
+10010
+11100
+10010
+10001
+10001
+10001
+00000`
+						break;
+
+					case "L":
+						return `
+10000
+10000
+10000
+10000
+10000
+10000
+11111
+00000`
+						break;
+
+					case "M":
+						return `
+10001
+11011
+10101
+10001
+10001
+10001
+10001
+00000`
+						break;
+
+					case "N":
+						return `
+10001
+11001
+10101
+10011
+10001
+10001
+10001
+00000`
+						break;
+
+					case "O":
+						return `
+01110
+10001
+10001
+10001
+10001
+10001
+01110
+00000`
+						break;
+
+					case "P":
+						return `
+11110
+10001
+11110
+10000
+10000
+10000
+10000
+00000`
+						break;
+
+					case "Q":
+						return `
+01110
+10001
+10001
+10001
+10001
+10010
+01101
+00000`
+						break;
+
+					case "R":
+						return `
+11110
+10001
+11110
+10001
+10001
+10001
+10001
+00000`
+						break;
+
+					case "S":
+						return `
+01111
+10000
+01110
+00001
+00001
+10001
+01110
+00000`
+						break;
+
+					case "T":
+						return `
+11111
+00100
+00100
+00100
+00100
+00100
+00100
+00000`
+						break;
+
+					case "U":
+						return `
+10001
+10001
+10001
+10001
+10001
+10001
+01110
+00000`
+						break;
+
+					case "V":
+						return `
+10001
+10001
+10001
+10001
+01010
+01010
+00100
+00000`
+						break;
+
+					case "W":
+						return `
+10001
+10001
+10001
+10001
+10101
+11011
+10001
+00000`
+						break;
+
+					case "X":
+						return `
+10001
+01010
+00100
+01010
+10001
+10001
+10001
+00000`
+						break;
+
+					case "Y":
+						return `
+10001
+01010
+00100
+00100
+00100
+00100
+00100
+00000`
+						break;
+
+					case "Z":
+						return `
+11111
+00001
+00010
+00100
+01000
+10000
+11111
+00000`
+						break;
+					default: return ``;
+				}
+
+			}
+		</script>
+
+	</body>
+
+</html>

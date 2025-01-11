@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>get percent</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../shale.css">
+		<style>
+			html, body, input {
+				font-family: sans-serif;
+			}
+		</style>
+	</head>
+<body>
+	type up to five fractions into any of the boxes<br>
+	<form action="" onsubmit="meme();return false">
+		<input type="text" placeholder="- / 30" onChange="meme();" id="k"><br><br>
+		<input type="text" placeholder="- / 30" onChange="meme();" id="a"><br><br>
+		<input type="text" placeholder="- / 15" onChange="meme();" id="c"><br><br>
+		<input type="text" placeholder="- / 15" onChange="meme();" id="t"><br><br>
+		<input type="text" placeholder="- / 10" onChange="meme();" id="s"><br><br>
+
+		<input class="button" onclick="meme()" type="submit" value="find ur mark"/>
+	</form>
+
+	<p class="bruh"></p>
+
+	<script>
+	// remove form resubmit dialog - https://stackoverflow.com/a/45656609/
+	if ( window.history.replaceState ) {
+		window.history.replaceState( null, null, window.location.href );
+	}
+
+	function meme() {
+		var mark1 = document.getElementById("k").value.trim().replace(/\s/g, ""),
+			mark2 = document.getElementById("a").value.trim().replace(/\s/g, ""),
+			mark3 = document.getElementById("c").value.trim().replace(/\s/g, ""),
+			mark4 = document.getElementById("t").value.trim().replace(/\s/g, ""),
+			mark5 = document.getElementById("s").value.trim().replace(/\s/g, "");
+
+		var numer = 0.0, denom = 0.0;
+
+		if (!isNaN(mark1.split("/")[0] + mark1.split("/")[1])) {
+			numer += parseFloat(mark1.split("/")[0]);
+			denom += parseFloat(mark1.split("/")[1]);
+		}
+
+		if (!isNaN(mark2.split("/")[0] + mark2.split("/")[1])) {
+			numer += parseFloat(mark2.split("/")[0]);
+			denom += parseFloat(mark2.split("/")[1]);
+		}
+
+		if (!isNaN(mark3.split("/")[0] + mark3.split("/")[1])) {
+			numer += parseFloat(mark3.split("/")[0]);
+			denom += parseFloat(mark3.split("/")[1]);
+		}
+
+		if (!isNaN(mark4.split("/")[0] + mark4.split("/")[1])) {
+			numer += parseFloat(mark4.split("/")[0]);
+			denom += parseFloat(mark4.split("/")[1]);
+		}
+
+		if (!isNaN(mark5.split("/")[0] + mark5.split("/")[1])) {
+			numer += parseFloat(mark5.split("/")[0]);
+			denom += parseFloat(mark5.split("/")[1]);
+		}
+
+		if (isNaN(numer / denom)) {
+			document.querySelector(".bruh").innerHTML = "enter something lmao";
+		} else {
+			document.querySelector(".bruh").innerHTML = (numer / denom).toLocaleString("en", {style: "percent"});
+		}
+
+		// random accent every time, why not
+		document.querySelector(':root').style.setProperty('--a-r', Math.floor(Math.random() * 256));
+		document.querySelector(':root').style.setProperty('--a-g', Math.floor(Math.random() * 256));
+		document.querySelector(':root').style.setProperty('--a-b', Math.floor(Math.random() * 256));
+	}
+
+	</script>
+</body>
+</html>

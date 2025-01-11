@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>fortune | cowsay | lolcat</title>
+		<meta name="description" content="Get your fortune for the day with cowsay and lolcat, directly in your browser!">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="../shale.css">
+		<style>
+			html,
+			body,
+			input {
+				font-family: sans-serif;
+				color-scheme: dark;
+				background-color: #191919;
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body class="dark">
+		<form onsubmit="return false;">
+			<label for="cow">cow</label>
+			<select id="cow" onchange="update();">
+				<option value="random">random</option>
+			</select>
+			<label for="eyes">eyes</label>
+			<input type="text" id="eyes" placeholder="eyes" value="oo" onchange="update();">
+			<label for="tongue">tongue</label>
+			<input type="text" id="tongue" placeholder="tongue" value="U" onchange="update();">
+			<button class="button" onclick="update();">check your fortune for the day</button>
+		</form>
+
+		<pre id="fcl"></pre>
+
+
+		<script>
+			const API_URL = "https://motd.logonoff.co";
+
+		    /**
+			 * Modified from lolcatjs. Turns text into a rainbow.
+			 * @link https://github.com/robertmarsal/lolcatjs/blob/main/index.js
+			 * @license WTFPL
+			 * @param {string} id id of the element to put the rainbow in
+			 * @param {string} text to lolcat
+			 */
+			const lolcat = (id, text) => {
+				const options = {
+					/** Seed of the rainbow, use the same for the same pattern */
+					seed: Math.random() * 1000,
+					/** Spread of the rainbow */
+					spread: 8.0,
+					/** Frequency of the rainbow colors */
+					freq: 0.3,
+				};
+
+				/**
+				 * @param {number} i index of the character
+				 * @returns a rainbow color for the character at index i
+				 */
+				const rainbow = (i) => `rgb(
+					${Math.round(Math.sin(options.freq * i + 0) * 127 + 128)},
+					${Math.round(Math.sin(options.freq * i + 2 * Math.PI / 3) * 127 + 128)},
+					${Math.round(Math.sin(options.freq * i + 4 * Math.PI / 3) * 127 + 128)}
+				)`;
+
+				/**
+				 * @param {string} char character to colorize
+				 * @param {string} color color to use
+				 * @returns the character wrapped in a span with the color
+				 */
+				const colorize = (char, color) => `<span style="color: ${color};">${char}</span>`;
+
+				/**
+				 * @param {string} line line to colorize
+				 * @returns the line with each character colorized
+				 */
+				const println = (line) => Array.from(line,
+					(char, i) => colorize(char, rainbow(options.seed + i / options.spread))
+				).join('') + "\n";
+
+				/**
+				 * @param {string} string string to colorize
+				 * @returns a rainbow string with newlines at the end of each line
+				 */
+				const from_string = (string) => {
+					let output = "";
+					(string || '').split('\n').forEach((line) => {
+						options.seed += 1;
+						output += println(line);
+					});
+					return output;
+				};
+
+				document.getElementById(id).innerHTML = from_string(text);
+			};
+
+			/**
+			 * produces a query string from an object
+			 * @param {object} obj object to stringify
+			 * @returns a query string
+			 */
+			const query_stringify = (obj) => Object.keys(obj).map((key) =>
+				(obj != null && obj[key] != null) && `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`
+			).join('&');
+
+			/**
+			 * gets a random fortune
+			 * @param {string} id id of the element to put the fortune in
+			 */
+			const fcl = async (id, cow, eyes, tongue) => {
+				let response = await fetch(`${API_URL}?${query_stringify({ cow, eyes, tongue })}`);
+
+				if (response.ok) {
+					let text = await response.text();
+					lolcat(id, text);
+				} else {
+					alert("HTTP-Error: " + response.status);
+				}
+			}
+
+			/**
+			 * gets the cows from cowsay
+			 * @returns {string[]} cows
+			 */
+			const get_cows = async () => {
+				let response = await fetch(`${API_URL}/cows`);
+
+				if (response.ok) {
+					return response.text().then((text) => text.split('\n'));
+				} else {
+					alert("HTTP-Error: " + response.status);
+				}
+			}
+
+			/** update fortune */
+			const update = () => {
+				fcl("fcl",
+				    document.getElementById("cow").value,
+				    document.getElementById("eyes").value,
+				    document.getElementById("tongue").value
+				);
+			}
+
+			window.onload = async () => {
+				let cows = await get_cows();
+				let cow = document.getElementById("cow");
+				cows.forEach((c) => {
+					let option = document.createElement("option");
+					option.text = c;
+					cow.add(option);
+				});
+			}
+
+		</script>
+	</body>
+
+
+</html>

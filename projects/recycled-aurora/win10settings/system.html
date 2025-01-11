@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Canada 150</title>
+	<link rel="stylesheet" href="main.css">
+	<meta name="theme-color" content="#000">
+</head>
+
+<body class="popout">
+	<div class="title">
+		<a class="back" href="index.html">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" version="1.1">
+				<path fill="#fff" d="M 19.03125 4.28125 L 8.03125 15.28125 L 7.34375 16 L 8.03125 16.71875 L 19.03125 27.71875 L 20.46875 26.28125 L 10.1875 16 L 20.46875 5.71875 Z "></path>
+			</svg>
+		</a>
+		Display
+	</div>
+	<aside>
+		<div class="background acrylic medium-high">	
+			<ul>
+			  <li>Coffee</li>
+			  <li>Tea</li>
+			  <li>Milk</li>
+			</ul>  
+		</div>
+	</aside>
+	<main class="thingy">
+	</main><br>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" style="display: none">
+  <defs>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+</svg>
+	<script src="fluent.js"></script>
+	<script>
+		setInterval("myFunction()", 1);
+		var menu = document.querySelector('.background')
+
+		function myFunction() {
+		    if (document.hasFocus()) {
+		        menu.classList.add('acrylic');
+		    } else {
+		        menu.classList.remove('acrylic');
+		    }
+		}
+	</script>
+</body>
+
+</html>
