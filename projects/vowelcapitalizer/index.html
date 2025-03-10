@@ -16,7 +16,7 @@
 	<body>
 		<div id="a" contenteditable>text</div>
 
-		<button class="button" onclick="meme()">fix text</button>
+		<button class="shale-v1-button" onclick="meme()">fix text</button>
 		<script>
 			function meme() {
 				document.getElementById("a").innerHTML = document.getElementById("a").innerHTML.replaceAll("a", "A")
@@ -47,9 +47,7 @@
 				                                                                               .replaceAll("Z", "z");
 
 			// random accent every time, why not
-			document.querySelector(':root').style.setProperty('--a-r', Math.floor(Math.random() * 256));
-			document.querySelector(':root').style.setProperty('--a-g', Math.floor(Math.random() * 256));
-			document.querySelector(':root').style.setProperty('--a-b', Math.floor(Math.random() * 256));
+			document.querySelector(':root').style.setProperty('--shale-v1-accent', `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);
 		}
 		</script>
 

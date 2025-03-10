@@ -152,10 +152,7 @@ summary,
         color: black;
         display: block;
         line-height: 48px;
-
-        &:hover {
-            text-decoration: none;
-        }
+        text-decoration: none;
     }
 
     & .icon {

@@ -28,6 +28,10 @@ body {
         margin: 0;
     }
 
+    & svg:first-of-type {
+        fill: #fff;
+    }
+
     & .icon {
         cursor: inherit;
         float: left;
@@ -43,9 +47,13 @@ body {
         cursor: pointer;
         margin: 0;
         line-height: 1em;
+        display: flex;
+        gap: 1em;
+        padding-right: 1em;
 
         > .caption-button {
             padding: var(--titlebar-padding);
+            filter: unset;
             height: 1rem;
             width: 1rem;
 
@@ -131,6 +139,8 @@ body {
 /** taskbar **/
 .taskbar {
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column-reverse;
     height: 3rem;
     left: 0;
     position: fixed;

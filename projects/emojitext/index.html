@@ -15,10 +15,10 @@
 	</head>
 
 	<body>
-		<form action="" onsubmit="meme();return false">
+		<form action="" onsubmit="meme();return false" class="shale-v1-input">
 			<input type="text" id="input" name="input" placeholder="input" onkeyup="meme();" onkeydown="meme();" onkeypress="meme();" pattern="^[a-zA-Z0-9 ]+$"><br><br>
 			<input type="text" id="emoji" name="emoji" placeholder="emoji" onkeyup="meme();" onkeydown="meme();" onkeypress="meme();" required><br><br>
-			<input class="button" type="submit" value="pain"/>
+			<input class="shale-v1-button" type="submit" value="pain"/>
 		</form>
 
 		<pre id="text" contenteditable></pre>
@@ -56,9 +56,7 @@
 				});
 
 				// random accent every time, why not
-				document.querySelector(':root').style.setProperty('--a-r', Math.floor(Math.random() * 256));
-				document.querySelector(':root').style.setProperty('--a-g', Math.floor(Math.random() * 256));
-				document.querySelector(':root').style.setProperty('--a-b', Math.floor(Math.random() * 256));
+				document.querySelector(':root').style.setProperty('--shale-v1-accent', `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);
 			}
 
 			// 0: space, 1: emoji, 2: non-stripping space

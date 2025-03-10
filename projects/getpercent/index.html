@@ -14,14 +14,14 @@
 	</head>
 <body>
 	type up to five fractions into any of the boxes<br>
-	<form action="" onsubmit="meme();return false">
+	<form class="shale-v1-input" action="" onsubmit="meme();return false">
 		<input type="text" placeholder="- / 30" onChange="meme();" id="k"><br><br>
 		<input type="text" placeholder="- / 30" onChange="meme();" id="a"><br><br>
 		<input type="text" placeholder="- / 15" onChange="meme();" id="c"><br><br>
 		<input type="text" placeholder="- / 15" onChange="meme();" id="t"><br><br>
 		<input type="text" placeholder="- / 10" onChange="meme();" id="s"><br><br>
 
-		<input class="button" onclick="meme()" type="submit" value="find ur mark"/>
+		<input class="shale-v1-button" onclick="meme()" type="submit" value="find ur mark"/>
 	</form>
 
 	<p class="bruh"></p>
@@ -73,9 +73,7 @@
 		}
 
 		// random accent every time, why not
-		document.querySelector(':root').style.setProperty('--a-r', Math.floor(Math.random() * 256));
-		document.querySelector(':root').style.setProperty('--a-g', Math.floor(Math.random() * 256));
-		document.querySelector(':root').style.setProperty('--a-b', Math.floor(Math.random() * 256));
+		document.querySelector(':root').style.setProperty('--shale-v1-accent', `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);
 	}
 
 	</script>

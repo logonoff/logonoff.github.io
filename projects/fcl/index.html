@@ -18,17 +18,19 @@
 		</style>
 	</head>
 
-	<body class="dark">
-		<form onsubmit="return false;">
+	<body class="shale-v1-dark">
+		<form onsubmit="return false;" class="shale-v1-input">
 			<label for="cow">cow</label>
-			<select id="cow" onchange="update();">
-				<option value="random">random</option>
-			</select>
+			<span class="shale-v1-select">
+				<select id="cow" onchange="update();">
+					<option value="random">random</option>
+				</select>
+			</span>
 			<label for="eyes">eyes</label>
 			<input type="text" id="eyes" placeholder="eyes" value="oo" onchange="update();">
 			<label for="tongue">tongue</label>
 			<input type="text" id="tongue" placeholder="tongue" value="U" onchange="update();">
-			<button class="button" onclick="update();">check your fortune for the day</button>
+			<button class="shale-v1-button" onclick="update();">check your fortune for the day</button>
 		</form>
 
 		<pre id="fcl"></pre>
@@ -140,6 +142,9 @@
 				    document.getElementById("eyes").value,
 				    document.getElementById("tongue").value
 				);
+
+				// random accent every time, why not
+				document.querySelector(':root').style.setProperty('--shale-v1-accent', `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);
 			}
 
 			window.onload = async () => {

@@ -47,6 +47,9 @@ const toggleMaximize = (id) => {
 	const maximized = elem.classList.contains('maximized');
 	elem.classList.toggle('maximized');
 
+	// remove window snap
+	elem.style.width = "";
+
 	if (maximized) {
 		dragElement(elem);
 		// restore old position
@@ -75,6 +78,20 @@ const toggleMaximize = (id) => {
 		content.removeAttribute("style");
 
 		elem.querySelector(".maximize").innerHTML = '<svg width="1em" height="1em"><use xlink:href="#icon-restore"></use></svg>';
+	}
+
+	// make sure window stays in bounds
+	if (elem.offsetTop < 0) {
+		elem.style.top = "0px";
+	}
+	if (elem.offsetLeft < 0) {
+		elem.style.left = "0px";
+	}
+	if (elem.offsetTop + elem.offsetHeight > window.innerHeight) {
+		elem.style.top = window.innerHeight - elem.offsetHeight + "px";
+	}
+	if (elem.offsetLeft + elem.offsetWidth > window.innerWidth) {
+		elem.style.left = window.innerWidth - elem.offsetWidth + "px";
 	}
 }
 
