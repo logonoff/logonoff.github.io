@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="shale-v1-light shale-v1-webkit-scrollbar">
 <title>is this weird</title>
 <link rel="stylesheet" href="../shale.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +20,9 @@
 		} else {
 			document.getElementById("weirdOrNot").innerHTML = "this ain't weird";
 		}
+
+		// random accent every time, why not
+		document.querySelector(':root').style.setProperty('--shale-v1-accent', `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);
 	}
 	</script>
 

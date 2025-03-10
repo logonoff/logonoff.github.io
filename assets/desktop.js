@@ -8,6 +8,11 @@ const openWindows = new Set([]);
  */
 let highestZ = 0;
 
+const setHighestZ = (highest) => {
+	highestZ = highest;
+	document.querySelector(':root').style.setProperty('--highest-z', highestZ);
+}
+
 /**
  * @type {boolean} if true the mouse is on a div
  */
@@ -35,6 +40,9 @@ const closeWindow = (id) => {
 	elem.remove();
 	openWindows.delete(id);
 	document.getElementById('taskbar-' + id).remove();
+
+	// if all windows are closed, reset z-index
+	openWindows.size === 0 && setHighestZ(0);
 }
 
 /**
@@ -109,16 +117,17 @@ const closestId = (elem) => {
  */
 const setFocus = (id) => {
 	const elem = document.getElementById(id);
-	elem.style.zIndex = ++highestZ;
+	elem.style.zIndex = highestZ;
+	setHighestZ(highestZ + 1);
 	elem.classList.remove('minimized');
 	// set blur class to all other windows
 	openWindows.forEach((windowId) => {
-		document.getElementById(windowId).classList.add('blur');
-		document.getElementById('taskbar-' + windowId).classList.remove('current');
+		document.getElementById(windowId).querySelector('.shale-v1-header').classList.add('shale-v1--disabled');
+		document.getElementById(`taskbar-${windowId}`).classList.remove('current');
 	});
 	// remove blur class from current window
-	elem.classList.remove('blur');
-	document.getElementById('taskbar-' + id).classList.add('current');
+	elem.querySelector('.shale-v1-header').classList.remove('shale-v1--disabled');
+	document.getElementById(`taskbar-${id}`).classList.add('current');
 }
 
 /**

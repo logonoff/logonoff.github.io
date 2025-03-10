@@ -8,12 +8,12 @@ body {
 
 .titlebar {
     --titlebar-padding: 0.55em;
-    border-radius: 5px 5px 0 0;
     box-shadow: none;
-    color: #fff;
-    cursor: move;
     box-sizing: border-box;
+    cursor: move;
     display: flex;
+    flex-direction: column;
+    height: 2rem;
     justify-content: space-between;
 
     & .titlebar-title {
@@ -28,7 +28,7 @@ body {
         margin: 0;
     }
 
-    & svg:first-of-type {
+    & svg {
         fill: #fff;
     }
 
@@ -42,24 +42,17 @@ body {
     }
 
     & .buttons {
-        padding: 0;
-        color: #fff;
         cursor: pointer;
         margin: 0;
         line-height: 1em;
-        display: flex;
-        gap: 1em;
-        padding-right: 1em;
+        height: 2rem;
+        list-style: none;
+        gap: calc(var(--titlebar-padding) / 2);
 
         > .caption-button {
             padding: var(--titlebar-padding);
-            filter: unset;
             height: 1rem;
             width: 1rem;
-
-            &.close {
-                padding-right: calc(var(--titlebar-padding) * 1.5);
-            }
         }
     }
 }
@@ -70,15 +63,16 @@ body {
 
 .window {
     animation: 0.3s ease pop-out;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    border: 1px solid #d3d3d3;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    background: #f1f1f1;
+    border-radius: 4px;
+    border: 1px solid var(--shale-v1-secondary-border, #d3d3d3);
+    box-shadow: var(--shale-v1-shadow-moderate, 0 0 5px 0 rgba(0, 0, 0, 0.2));
     min-height: 150px;
     min-width: 300px;
     position: absolute;
 
     & .content {
+        display: flex;
         min-height: 150px;
         min-width: 100%;
         overflow: auto;
@@ -86,13 +80,8 @@ body {
 
         & > iframe {
             border: none;
-            height: 100%;
             width: 100%;
         }
-    }
-
-    &.blur .titlebar.header {
-        background: #8a8a8a linear-gradient(#8a8a8a 0%, #787878 100%);
     }
 
     &.minimized {
@@ -138,7 +127,7 @@ body {
 
 /** taskbar **/
 .taskbar {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shale-v1-shadow-subtle, 0 0 5px 0 rgba(0, 0, 0, 0.2));
     display: flex;
     flex-direction: column-reverse;
     height: 3rem;
@@ -168,23 +157,28 @@ body {
             margin: 0 0.5em;
             min-width: 150px;
             padding: 0 0.5em;
+
+            & svg:first-of-type {
+                fill: #fff;
+            }
         }
     }
 }
 
 .snap {
-    background: #fff2;
-    box-sizing: border-box;
-    padding: 0.5em;
-    border: 1px solid #d3d3d3;
+    background: color-mix(in srgb, var(--shale-v1-accent-300, white), transparent 70%);
     border-radius: 5px;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    height: calc(100vh - 3rem);
+    border: 1px solid var(--shale-v1-accent-700, #d3d3d3);
+    box-shadow: var(--shale-v1-shadow-puffy, 0 0 5px 0 rgba(0, 0, 0, 0.2));
+    box-sizing: border-box;
+    height: 0;
     left: 0;
+    opacity: 0;
+    padding: 0.5em;
     position: absolute;
-    top: 0;
-    z-index: -1;
-    display: none;
+    top: -100vh;
+    transition: opacity 0.125s ease;
+    z-index: calc(var(--highest-z, 1) - 1);
 
     &.left {
         width: 50%;
@@ -200,6 +194,8 @@ body {
     }
 
     &.visible {
-        display: block;
+        opacity: 1;
+        top: 0;
+        height: calc(100vh - 3rem);
     }
 }

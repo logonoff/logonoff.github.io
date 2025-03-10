@@ -6,6 +6,9 @@ html {
 html {
     background: #0097A7;
     font-family: "Ubuntu", "Lato", "Lucida Grande", "Roboto", "Segoe UI", sans-serif;
+    --shale-v1-accent: #2CD3FE !important;
+    --shale-v1-accent-dark-tint: #041114 !important;
+    --shale-v1-accent-light-tint: #fff !important;
 }
 
 body {
@@ -38,7 +41,6 @@ a[target="_blank"]:not(.no-icon a) .title::after {
     border-radius: 0.3em 0.3em 0 0;
     box-sizing: border-box;
     color: white;
-    max-width: 750px;
     padding: 1em;
     text-shadow: 0px 2px 4px #00000099;
 
@@ -72,9 +74,9 @@ a[target="_blank"]:not(.no-icon a) .title::after {
     box-shadow: 0 0 1em rgba(0, 0, 0);
     counter-reset: section;
     max-height: 100vh;
+    max-width: 750px;
     outline: 1px solid #234245;
     padding: 16px;
-    width: 750px;
 }
 
 .panel details {
@@ -121,35 +123,17 @@ a[target="_blank"]:not(.no-icon a) .title::after {
     }
 }
 
-summary,
-.details-component a,
-.selectable {
-    border: 1px solid white;
-
-    &:hover {
-        background: linear-gradient(#f5fafd, #eff8fd, #e8f5fd);
-        border-radius: 2px;
-        border: 1px solid #eff9fe;
-        outline: 1px solid #d8f0fa;
-    }
-
-    &:focus {
-        background: linear-gradient(#f1f8fd, #e3f3fd, #d5effc);
-        border-radius: 2px;
-        border: 1px solid #e7f5fd;
-        outline: 1px solid #99defd;
-    }
+.shale-v1-button {
+    padding: 0 !important;
 }
 
 .details-component {
     display: block;
-    height: 48px;
     text-decoration: none;
     min-width: 217px;
     width: calc(33% - 0.25em);
 
     > a {
-        color: black;
         display: block;
         line-height: 48px;
         text-decoration: none;
@@ -165,12 +149,17 @@ summary,
         width: 36px;
     }
 
+    & .no-icon {
+        padding-left: 6px !important;
+    }
+
     & .text {
         display: flex;
         flex-direction: column;
         height: 48px;
         justify-content: center;
         line-height: 1rem;
+        text-align: left;
 
         & strong {
             padding-bottom: 0.025em;
@@ -202,7 +191,6 @@ summary,
     border: 1px solid #396393;
     height: calc(100vh - 11em - 32px);
     max-height: 500px;
-    max-width: 750px;
     overflow-y: auto;
     padding: 1em;
 
