@@ -14,11 +14,6 @@ const setHighestZ = (highest) => {
 }
 
 /**
- * @type {boolean} if true the mouse is on a div
- */
-let isOnDiv = false;
-
-/**
  * @type {boolean} if true the client is on a touch device
  */
 const isMobile = () => {
@@ -215,8 +210,6 @@ const spawnDraggable = (url, title, top, left, templateId, noClose, maximized, w
 	}
 	elem.addEventListener('mousedown', () => setFocus(id));
 	elem.addEventListener('touchstart', () => setFocus(id));
-	elem.addEventListener('mouseenter', () => isOnDiv = true);
-	elem.addEventListener('mouseleave', () => isOnDiv = false);
 
 	openWindows.add(id);
 	spawnTaskbarItem(id, title, noClose);
@@ -395,19 +388,5 @@ allDetails.forEach((detail) => {
 					   detail.dataset.openFullscreen,
 					   detail.dataset.requestedWidth,
 					   detail.dataset.requestedHeight);
-	});
-});
-
-// Add the event listeners for mousedown, mousemove, and mouseup
-// https://stackoverflow.com/a/36767290
-var allDivs = document.querySelectorAll("div");
-
-allDivs.forEach(div => {
-	div.addEventListener("mouseenter", function() {
-	  isOnDiv = true;
-	});
-
-	div.addEventListener("mouseleave", function() {
-	  isOnDiv = false;
 	});
 });
