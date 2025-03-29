@@ -123,6 +123,8 @@ const setFocus = (id) => {
 	// remove blur class from current window
 	elem.querySelector('.shale-v1-header').classList.remove('shale-v1--disabled');
 	document.getElementById(`taskbar-${id}`).classList.add('current');
+	// literally give it focus
+	elem.querySelector('a, button').focus();
 }
 
 /**
