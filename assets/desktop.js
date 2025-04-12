@@ -8,6 +8,11 @@ const openWindows = new Set([]);
  */
 let highestZ = 0;
 
+/**
+ * @type {string[]} history of window foci
+ */
+let focusedWindows = [];
+
 const setHighestZ = (highest) => {
 	highestZ = highest;
 	document.querySelector(':root').style.setProperty('--highest-z', highestZ);
@@ -35,6 +40,10 @@ const closeWindow = (id) => {
 	elem.remove();
 	openWindows.delete(id);
 	document.getElementById('taskbar-' + id).remove();
+
+	// focus the last focused window if it exists
+	focusedWindows = focusedWindows.filter((windowId) => windowId !== id);
+	setFocus(focusedWindows.pop());
 
 	// if all windows are closed, reset z-index
 	openWindows.size === 0 && setHighestZ(0);
@@ -111,6 +120,8 @@ const closestId = (elem) => {
  * @param {string} id
  */
 const setFocus = (id) => {
+	focusedWindows.push(id);
+	// set the focus
 	const elem = document.getElementById(id);
 	elem.style.zIndex = highestZ;
 	setHighestZ(highestZ + 1);
@@ -236,6 +247,7 @@ const spawnTaskbarItem = (id, title, noClose) => {
 	let clone = template.content.cloneNode(true);
 
 	clone.querySelector('.taskbar-item').id = 'taskbar-' + id;
+
 	// vulnerable to XSS but I control the HTML
 	clone.querySelector('.taskbar-item').innerHTML = title;
 
@@ -276,8 +288,6 @@ const dragElement = (element) => {
 	}
 
 	function dragMouseDown(e) {
-		e = e || window.event;
-
 		// get the mouse cursor position at startup:
 		pos3 = e.clientX;
 		pos4 = e.clientY;
@@ -289,8 +299,6 @@ const dragElement = (element) => {
 	}
 
 	function unMaximize (e) {
-		e = e || window.event;
-
 		// unmaximize the window if it is maximized
 		if (element.classList.contains('maximized')) {
 			// get the position of the mouse relative to the window in percentage
@@ -310,7 +318,6 @@ const dragElement = (element) => {
 	}
 
 	function elementDrag(e) {
-		e = e || window.event;
 		// calculate the new cursor position:
 		pos1 = pos3 - e.clientX;
 		pos2 = pos4 - e.clientY;
