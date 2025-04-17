@@ -13,6 +13,12 @@ let highestZ = 0;
  */
 let focusedWindows = [];
 
+const unfocusWindow = (id) => {
+	// set the focus to the last focused window if it exists
+	focusedWindows = focusedWindows.filter((windowId) => windowId !== id);
+	setFocus(focusedWindows.pop());
+}
+
 const setHighestZ = (highest) => {
 	highestZ = highest;
 	document.querySelector(':root').style.setProperty('--highest-z', highestZ);
@@ -41,16 +47,14 @@ const closeWindow = (id) => {
 	openWindows.delete(id);
 	document.getElementById('taskbar-' + id).remove();
 
-	// focus the last focused window if it exists
-	focusedWindows = focusedWindows.filter((windowId) => windowId !== id);
-	setFocus(focusedWindows.pop());
+	unfocusWindow(id);
 
 	// if all windows are closed, reset z-index
 	openWindows.size === 0 && setHighestZ(0);
 }
 
 /**
- * Maximizes / minimizes the window with the given id
+ * Maximizes / restores the window with the given id
  * @param {string} id
  */
 const toggleMaximize = (id) => {
@@ -105,6 +109,14 @@ const toggleMaximize = (id) => {
 	if (elem.offsetLeft + elem.offsetWidth > window.innerWidth) {
 		elem.style.left = window.innerWidth - elem.offsetWidth + "px";
 	}
+}
+
+/**
+ * Minimize a window
+ */
+const minimizeWindow = (id) => {
+	document.getElementById(id).classList.toggle('minimized');
+	unfocusWindow(id);
 }
 
 /**
@@ -216,7 +228,7 @@ const spawnDraggable = (url, title, top, left, templateId, noClose, maximized, w
 		elem.querySelector('.maximize').addEventListener('click', () => toggleMaximize(id));
 	}
 	if (elem.querySelector('.minimize')) {
-		elem.querySelector('.minimize').addEventListener('click', () => elem.classList.toggle('minimized'));
+		elem.querySelector('.minimize').addEventListener('click', () => minimizeWindow(id));
 	}
 	if (elem.querySelector('.titlebar')) {
 		elem.querySelector('.titlebar').addEventListener('dblclick', () => toggleMaximize(id));
