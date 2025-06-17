@@ -76,7 +76,9 @@ a[target="_blank"]:not(.no-icon a) .title::after {
     border-width: 1px;
     box-shadow: 0 0 1em rgba(0, 0, 0);
     counter-reset: section;
-    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 32px);
     max-width: 750px;
     outline: 1px solid #234245;
     padding: 16px;
@@ -196,7 +198,6 @@ a[target="_blank"]:not(.no-icon a) .title::after {
     border-radius: 0 0 0.3em 0.3em;
     border-top: none;
     border: 1px solid #396393;
-    height: calc(100vh - 11em - 32px);
     max-height: 500px;
     overflow-y: auto;
     padding: 1em;
