@@ -34,13 +34,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # https://github.com/actions/setup-node/issues/531 ugh
       - name: Setup Node
         uses: actions/setup-node@v5
         with:
+          package-manager-cache: false
           node-version: "lts/*"
 
       - name: Setup corepack / yarn berry
-        run: corepack enable
+        run: npm i -g corepack && corepack enable && corepack prepare --activate
 
       - name: Persist Eleventy .cache
         uses: actions/cache@v4
