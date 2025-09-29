@@ -1,4 +1,6 @@
 body {
+    --taskbar-height: 3rem;
+    --titlebar-padding: 0.55em;
     height: 100vh;
     margin: 0;
     overflow: hidden;
@@ -7,7 +9,6 @@ body {
 }
 
 .titlebar {
-    --titlebar-padding: 0.55em;
     box-shadow: none;
     box-sizing: border-box;
     cursor: move;
@@ -63,7 +64,6 @@ body {
 
 .window {
     animation: 0.3s ease pop-out;
-    background: #f1f1f1;
     border-radius: 4px;
     border: 1px solid var(--shale-v1-secondary-border, #d3d3d3);
     box-shadow: var(--shale-v1-shadow-moderate, 0 0 5px 0 rgba(0, 0, 0, 0.2));
@@ -72,6 +72,7 @@ body {
     position: absolute;
 
     & .content {
+        background: #f1f1f1;
         display: flex;
         min-height: 150px;
         min-width: 100%;
@@ -92,13 +93,12 @@ body {
 .window.maximized {
     border-radius: 0;
     border: none;
-    height: calc(100vh - 3rem);
     left: 0;
     top: 0;
     width: 100vw;
 
     & .content {
-        height: calc(100vh - 0.55rem * 2 - 3rem - 1rem);
+        height: calc(100vh - var(--titlebar-padding) * 2 - var(--taskbar-height) - 1rem);
         resize: none;
         width: 100%;
     }
@@ -111,14 +111,15 @@ body {
 }
 
 /** taskbar **/
-.taskbar {
+#taskbar-container {
     box-shadow: var(--shale-v1-shadow-subtle, 0 0 5px 0 rgba(0, 0, 0, 0.2));
     display: flex;
     flex-direction: column-reverse;
-    height: 3rem;
+    height: var(--taskbar-height);
     left: 0;
     position: fixed;
-    top: calc(100vh - 3rem);
+    top: calc(100vh - var(--taskbar-height));
+    width: unset;
     z-index: 2147483647;
 
     &.header {
@@ -129,6 +130,7 @@ body {
 
     & .nav {
         text-align: left;
+        justify-content: flex-start;
         padding: 0;
         margin: 0;
 
@@ -145,13 +147,18 @@ body {
             margin-right: 0;
             margin: 0 0.5em;
             min-width: 150px;
-            padding: 0 0.5em;
+            padding-left: 1em;
+            padding-right: 1em;
 
             & svg:first-of-type {
                 fill: #fff;
             }
         }
     }
+}
+
+.window.maximized:not(.minimized) ~ #taskbar-container {
+    width: inherit; /* returns the background of the shale.css header */
 }
 
 .snap {
@@ -185,6 +192,6 @@ body {
     &.visible {
         opacity: 1;
         top: 0;
-        height: calc(100vh - 3rem);
+        height: calc(100vh - var(--taskbar-height));
     }
 }

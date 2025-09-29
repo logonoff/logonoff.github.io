@@ -165,7 +165,10 @@ const setFocus = (id) => {
  */
 const spawnDraggable = (url, title, top, left, templateId, noClose, maximized, width = 300, height = 150) => {
 	if (!templateId) { templateId = 'window-template'; }
+
+	/** @type {HTMLTemplateElement} */
 	const template = document.getElementById(templateId);
+
 	let clone = template.content.cloneNode(true);
 
 	if (templateId === 'window-template' && isMobile()) {
@@ -178,7 +181,8 @@ const spawnDraggable = (url, title, top, left, templateId, noClose, maximized, w
 
 	clone.querySelector('.window').id = id;
 
-	document.body.appendChild(clone);
+	// insert before taskbar so that we can use the ~ selector on it
+	document.body.insertBefore(clone, document.getElementById('taskbar-container'));
 
 	const elem = document.getElementById(id);
 
@@ -397,6 +401,7 @@ allDetails.forEach((detail) => {
 		icon.setAttribute('width', '1em');
 		icon.setAttribute('height', '1em');
 		icon.classList.remove('icon');
+		icon.classList.add('titlebar-icon');
 		// get titlebar title
 		const title = `${icon.outerHTML}<div>${detail.querySelector('.title').innerText}</div>`;
 		// spawn draggable window
