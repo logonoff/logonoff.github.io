@@ -12,4 +12,10 @@ export default defineConfig(config => {
 
 	// Copy `projects/` to `_site/projects`
 	config.addPassthroughCopy("projects");
+
+	// copy static files root
+	config.addPassthroughCopy(".well-known");
+	config.addPassthroughCopy("favicon.ico");
+	config.addPassthroughCopy("jason.json");
+	config.addPassthroughCopy("robots.txt");
 });
