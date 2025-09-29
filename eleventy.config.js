@@ -1,4 +1,4 @@
-const { defineConfig } = require('11ty.ts'); // i'm shocked we need this T_T
+import { defineConfig } from '11ty.ts'; // i'm shocked we need this T_T
 
 export default defineConfig(config => {
 	// Output directory: _site
