@@ -1,6 +1,7 @@
 ﻿*.code-kspace
 *.db
 .vs/
+/node_modules/
 
 # eleventy
 _site/

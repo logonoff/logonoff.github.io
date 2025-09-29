@@ -41,11 +41,13 @@ jobs:
       - name: Setup corepack / yarn berry
         run: npm i -g corepack && corepack enable && corepack prepare --activate
 
-      - name: Persist Eleventy .cache
+      - name: Persist yarn berry cache
         uses: actions/cache@v4
         with:
-          path: ./.cache
-          key: ${{ runner.os }}-eleventy-fetch-cache
+          path: ~/.yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         run: yarn --frozen-lockfile
