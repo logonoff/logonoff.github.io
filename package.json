@@ -1,0 +1,14 @@
+{
+  "name": "logonoff.github.io",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "yarn@4.6.0",
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}
