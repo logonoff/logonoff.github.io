@@ -1,0 +1,5 @@
+Contact: mailto:security@logonoff.co
+Contact: https://discord.com/users/122505347163357186
+Expires: 2112-12-12T17:12:00.000Z
+Encryption: https://github.com/logonoff.keys
+Preferred-Languages: en-ca
