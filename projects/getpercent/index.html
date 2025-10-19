@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="https://logonoff.co/shalecss/build/shale.css">
 		<style>
 			html, body, input {
-				font-family: sans-serif;
+				font-family: var(--shale-v1-font-family), sans-serif;
 			}
 		</style>
 	</head>
@@ -27,9 +27,9 @@
 	<p class="bruh"></p>
 
 	<script>
-	// remove form resubmit dialog - https://stackoverflow.com/a/45656609/
-	if ( window.history.replaceState ) {
-		window.history.replaceState( null, null, window.location.href );
+	/* remove form resubmit dialog - https://stackoverflow.com/a/45656609/ */
+	if (window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
 	}
 
 	function meme() {
@@ -72,7 +72,7 @@
 			document.querySelector(".bruh").innerHTML = (numer / denom).toLocaleString("en", {style: "percent"});
 		}
 
-		// random accent every time, why not
+		/* random accent every time, why not */
 		document.querySelector(':root').style.setProperty('--shale-v1-accent', `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);
 	}
 

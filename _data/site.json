@@ -97,7 +97,7 @@
     {
       "name": "inline-spoilers",
       "url": "https://obsidian.md/plugins?search=Inline%20spoilers",
-      "text": "Discord-like inline spoilers for Obsidian"
+      "text": "Discord-like inline spoilers for obsidian.md"
     },
     {
       "name": "shalecss",
@@ -108,6 +108,11 @@
       "name": "dreamscape",
       "url": "https://github.com/logonoff/dreamscape-wmp",
       "text": "Fluent design-like skin for Windows Media Player"
+    },
+    {
+      "name": "bookmarks",
+      "url": "https://github.com/backstage/community-plugins/tree/main/workspaces/bookmarks/plugins/bookmarks",
+      "text": "Show bookmarks in backstage.io entities"
     }
   ],
   "archive": [

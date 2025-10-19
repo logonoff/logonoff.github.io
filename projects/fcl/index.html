@@ -10,7 +10,7 @@
 			html,
 			body,
 			input {
-				font-family: sans-serif;
+				font-family: var(--shale-v1-font-family), sans-serif;
 				color-scheme: dark;
 				background-color: #191919;
 				color: #fff;
@@ -143,7 +143,7 @@
 				    document.getElementById("tongue").value
 				);
 
-				// random accent every time, why not
+				/* random accent every time, why not */
 				document.querySelector(':root').style.setProperty('--shale-v1-accent', `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);
 			}
 

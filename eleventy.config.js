@@ -2,6 +2,9 @@ import { defineConfig } from '11ty.ts'; // i'm shocked we need this T_T
 
 /**
  * naive way of minifying code by removing new lines and trimming spaces
+ *
+ * means you cannot use `//`, or multi-line strings :shrug:
+ *
  * @param {string} code
  * @returns {string} propeller hat and comically large lollipop (due to naivety)
  */
@@ -23,7 +26,7 @@ export default defineConfig(config => {
 	/** CSS minifier */
 	config.addFilter("cssmin", minify);
 
-	/** Passthrough Copy **/
+	/** Passthrough copy (minification does not apply) */
 	// Copy `assets/` to `_site/assets`
 	config.addPassthroughCopy("assets");
 

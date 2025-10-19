@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="https://logonoff.co/shalecss/build/shale.css">
 		<style>
 			html, body, input {
-				font-family: sans-serif;
+				font-family: var(--shale-v1-font-family), sans-serif;
 			}
 		</style>
 	</head>
@@ -24,12 +24,12 @@
 		<pre id="text" contenteditable></pre>
 
 		<script>
-			// remove form resubmit dialog - https://stackoverflow.com/a/45656609/
-			if ( window.history.replaceState ) {
-				window.history.replaceState( null, null, window.location.href );
+			/* remove form resubmit dialog - https://stackoverflow.com/a/45656609/ */
+			if (window.history.replaceState) {
+				window.history.replaceState(null, null, window.location.href);
 			}
 
-			// update pre with input
+			/* update pre with input */
 			function meme() {
 				const space = '   ';
 				const text = Array.from(document.getElementById("input").value);
@@ -41,7 +41,7 @@
 
 				text.forEach((char, index) => {
 					pixel = getLetter(char).split("\n");
-					lines[0] = "."; // for discord compact mode
+					lines[0] = "."; /* for discord compact mode */
 					for (let i = 1; i <= 8; i++) {
 						lines[i] += pixel[i] + "0";
 					}
@@ -55,11 +55,11 @@
 					}
 				});
 
-				// random accent every time, why not
+				/* random accent every time, why not */
 				document.querySelector(':root').style.setProperty('--shale-v1-accent', `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);
 			}
 
-			// 0: space, 1: emoji, 2: non-stripping space
+			/* 0: space, 1: emoji, 2: non-stripping space */
 			function getLetter(letter) {
 				switch (letter) {
 					case " ":

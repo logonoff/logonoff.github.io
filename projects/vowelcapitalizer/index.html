@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="https://logonoff.co/shalecss/build/shale.css">
 		<style>
 			html, body, input {
-				font-family: sans-serif;
+				font-family: var(--shale-v1-font-family), sans-serif;
 			}
 		</style>
 	</head>
@@ -46,7 +46,7 @@
 				                                                                               .replaceAll("Y", "y")
 				                                                                               .replaceAll("Z", "z");
 
-			// random accent every time, why not
+			/* random accent every time, why not */
 			document.querySelector(':root').style.setProperty('--shale-v1-accent', `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);
 		}
 		</script>

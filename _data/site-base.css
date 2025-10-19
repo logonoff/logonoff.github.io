@@ -1,11 +1,15 @@
 body,
 html {
-    height: 100%;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100vw;
 }
 
 html {
     background: #0097A7;
-    font-family: "Ubuntu", "Lato", "Lucida Grande", "Roboto", "Segoe UI", sans-serif;
+    font-family: "Ubuntu", Cantarell, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, 'Open Sans', 'Helvetica Neue', sans-serif;
     --shale-v1-accent: #2CD3FE !important;
     --shale-v1-accent-dark-tint: #041114 !important;
     --shale-v1-accent-light-tint: #fff !important;
