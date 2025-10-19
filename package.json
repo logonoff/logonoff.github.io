@@ -2,14 +2,16 @@
   "name": "logonoff.github.io",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "yarn@4.6.0",
+  "packageManager": "yarn@4.10.3",
   "type": "module",
   "scripts": {
-    "build": "eleventy",
-    "start": "eleventy --serve"
+    "clean": "rm -rf _site",
+    "build": "yarn clean && eleventy",
+    "start": "yarn clean && eleventy --serve"
   },
   "dependencies": {
     "11ty.ts": "^0.0.6",
-    "@11ty/eleventy": "^3.1.2"
+    "@11ty/eleventy": "^3.1.2",
+    "html-minifier": "^4.0.0"
   }
 }
