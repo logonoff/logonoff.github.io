@@ -1,0 +1,129 @@
+{
+  "socials": [
+    {
+      "name": "Discord",
+      "url": "https://discord.com/users/122505347163357186",
+      "icon": "discord",
+      "text": "logonoff"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/logonoff",
+      "icon": "github",
+      "text": "@logonoff"
+    },
+    {
+      "name": "Mastodon",
+      "url": "https://mastodon.social/@logonoff",
+      "icon": "mastodon",
+      "text": "@logonoff",
+      "attrs": "rel='me'"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/@logonoff",
+      "icon": "youtube",
+      "text": "@logonoff"
+    },
+    {
+      "name": "Email",
+      "url": "mailto:hello@logonoff.co",
+      "icon": "email",
+      "text": "hello@logonoff.co"
+    }
+  ],
+  "gadgets": [
+    {
+      "name": "d-i-rye",
+      "url": "projects/d-i-rye/index.html",
+      "icon": "dirye",
+      "text": "Create your own Toronto Metropolitan University logo",
+      "attrs": "data-requested-width='700' data-requested-height='400'"
+    },
+    {
+      "name": "emojitext",
+      "url": "projects/emojitext/index.html",
+      "icon": "emojitext",
+      "text": "Convert text to aligned emojis that spell out the text for Discord",
+      "attrs": "data-requested-width='700' data-requested-height='400'"
+    },
+    {
+      "name": "getpercent",
+      "url": "projects/getpercent/index.html",
+      "icon": "getpercent",
+      "text": "Calculate percentages for grades given five fractions",
+      "attrs": "data-requested-height='400'"
+    },
+    {
+      "name": "isthisweird",
+      "url": "projects/isthisweird/index.html",
+      "icon": "isthisweird",
+      "text": "helps you determine if something is weird or not",
+      "attrs": "data-requested-width='375' data-requested-height='200'"
+    },
+    {
+      "name": "vowelcapitalizer",
+      "url": "projects/vowelcapitalizer/index.html",
+      "icon": "vowelcapitalizer",
+      "text": "Capitalizes vowels in some text (or even a website if you ctrl+c ctrl+v)"
+    },
+    {
+      "name": "fcl",
+      "url": "projects/fcl/index.html",
+      "icon": "fcl",
+      "text": "<code>fortune | cowsay | lolcat</code> simulator",
+      "attrs": "data-requested-width='700' data-requested-height='500'"
+    },
+    {
+      "name": "notepad",
+      "url": "https://notepad.logonoff.co/persist",
+      "icon": "notepad",
+      "text": "A simple notepad with persistence"
+    },
+    {
+      "name": "dvzlomstatus",
+      "url": "projects/dvzlomstatus/index.html",
+      "icon": "dvz",
+      "text": "Check the status of DvZ/LoM servers",
+      "attrs": "data-requested-width='700' data-requested-height='500'"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Awake on LAN",
+      "url": "https://flathub.org/apps/details/co.logonoff.awakeonlan",
+      "text": "A Wake on LAN client for Linux"
+    },
+    {
+      "name": "inline-spoilers",
+      "url": "https://obsidian.md/plugins?search=Inline%20spoilers",
+      "text": "Discord-like inline spoilers for Obsidian"
+    },
+    {
+      "name": "shalecss",
+      "url": "https://logonoff.co/shalecss",
+      "text": "A pseudo-skeuomorph CSS framework"
+    },
+    {
+      "name": "dreamscape",
+      "url": "https://github.com/logonoff/dreamscape-wmp",
+      "text": "Fluent design-like skin for Windows Media Player"
+    }
+  ],
+  "archive": [
+    {
+      "name": "start screen",
+      "url": "projects/recycled-aurora/screen/index.html",
+      "icon": "startscr",
+      "text": "An attempt at the start screen from Windows 8",
+      "attrs": "data-open-fullscreen='why not'"
+    },
+    {
+      "name": "windowsxptour",
+      "url": "projects/windowsxptour/index.html",
+      "icon": "xptour",
+      "text": "Windows XP Tour Simulator",
+      "attrs": "data-open-fullscreen='yes please'"
+    }
+  ]
+}
