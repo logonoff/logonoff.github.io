@@ -19,18 +19,26 @@
 	</head>
 
 	<body>
-		<form onsubmit="return false;" class="shale-v1-input">
-			<label for="cow">cow</label>
-			<span class="shale-v1-select">
-				<select id="cow" onchange="update();">
-					<option value="random">random</option>
-				</select>
-			</span>
-			<label for="eyes">eyes</label>
-			<input type="text" id="eyes" placeholder="eyes" value="oo" onchange="update();">
-			<label for="tongue">tongue</label>
-			<input type="text" id="tongue" placeholder="tongue" value="U" onchange="update();">
-			<button class="shale-v1-button" onclick="update();">check your fortune for the day</button>
+		<form onsubmit="return false;" class="shale-v1-flex-form">
+			<div class="shale-v1-input">
+				<label for="cow">cow</label>
+				<span class="shale-v1-select">
+					<select id="cow" onchange="update();">
+						<option value="random">random</option>
+					</select>
+				</span>
+			</div>
+			<div class="shale-v1-input">
+				<label for="eyes">eyes</label>
+				<input type="text" id="eyes" placeholder="eyes" value="oo" onchange="update();">
+			</div>
+			<div class="shale-v1-input">
+				<label for="tongue">tongue</label>
+				<input type="text" id="tongue" placeholder="tongue" value="U" onchange="update();">
+			</div>
+			<div class="shale-v1-input">
+				<button class="shale-v1-button" onclick="update();">check your fortune for the day</button>
+			</div>
 		</form>
 
 		<pre id="fcl"></pre>
@@ -119,7 +127,7 @@
 				} else {
 					alert("HTTP-Error: " + response.status);
 				}
-			}
+			};
 
 			/**
 			 * gets the cows from cowsay
@@ -133,7 +141,7 @@
 				} else {
 					alert("HTTP-Error: " + response.status);
 				}
-			}
+			};
 
 			/** update fortune */
 			const update = () => {
@@ -145,7 +153,7 @@
 
 				/* random accent every time, why not */
 				document.querySelector(':root').style.setProperty('--shale-v1-accent', `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`);
-			}
+			};
 
 			window.onload = async () => {
 				let cows = await get_cows();
@@ -155,7 +163,7 @@
 					option.text = c;
 					cow.add(option);
 				});
-			}
+			};
 
 		</script>
 	</body>
