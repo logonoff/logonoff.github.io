@@ -397,9 +397,9 @@ allDetails.forEach((detail) => {
 		// prevent default link behavior
 		e.preventDefault();
 		// get titlebar icon
-		let icon = document.createElement('div');
+		let icon = { outerHTML: '' };
 		if (detail.querySelector('.icon')) {
-			const icon = detail.querySelector('.icon').cloneNode(true);
+			icon = detail.querySelector('.icon').cloneNode(true);
 			icon.setAttribute('width', '1em');
 			icon.setAttribute('height', '1em');
 			icon.classList.remove('icon');
