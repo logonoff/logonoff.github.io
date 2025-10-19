@@ -113,6 +113,16 @@
       "name": "bookmarks",
       "url": "https://github.com/backstage/community-plugins/tree/main/workspaces/bookmarks/plugins/bookmarks",
       "text": "Show bookmarks in backstage.io entities"
+    },
+    {
+      "name": "bgrt-grub-theme",
+      "url": "https://github.com/logonoff/bgrt-grub-theme",
+      "text": "Motherboard boot logo theme for grub"
+    },
+    {
+      "name": "userscripts",
+      "url": "https://github.com/logonoff/userscripts",
+      "text": "A bunch of userscripts for various websites"
     }
   ],
   "archive": [
@@ -129,6 +139,18 @@
       "icon": "xptour",
       "text": "Windows XP Tour Simulator",
       "attrs": "data-open-fullscreen='yes please'"
+    },
+    {
+      "name": "reidfilter",
+      "url": "https://reidfilter.vercel.app/",
+      "text": "Latest BTD6 advanced strategy guide by Ethan Reid",
+      "attrs": "data-requested-width='700' data-requested-height='500'"
+    },
+    {
+      "name": "SVG-APPA-demo",
+      "url": "https://logonoff.co/SVG-APPA-Demo/",
+      "text": "Homegrown aurora like it's 2004 on 2023 web standards",
+      "attrs": "data-requested-width='700' data-requested-height='200'"
     }
   ]
 }

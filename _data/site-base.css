@@ -157,10 +157,6 @@ a[target="_blank"]:not(.no-icon a) .title::after {
         width: 36px;
     }
 
-    & .no-icon {
-        padding-left: 6px !important;
-    }
-
     & .text {
         display: flex;
         flex-direction: column;
@@ -168,6 +164,11 @@ a[target="_blank"]:not(.no-icon a) .title::after {
         justify-content: center;
         line-height: 1rem;
         text-align: left;
+
+        /* apply style if previous sibling is not icon */
+        &:first-child:not(.icon) {
+            padding-left: 6px;
+        }
 
         & strong {
             padding-bottom: 0.025em;

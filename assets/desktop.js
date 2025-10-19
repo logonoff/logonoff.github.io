@@ -397,11 +397,14 @@ allDetails.forEach((detail) => {
 		// prevent default link behavior
 		e.preventDefault();
 		// get titlebar icon
-		const icon = detail.querySelector('.icon').cloneNode(true);
-		icon.setAttribute('width', '1em');
-		icon.setAttribute('height', '1em');
-		icon.classList.remove('icon');
-		icon.classList.add('titlebar-icon');
+		let icon = document.createElement('div');
+		if (detail.querySelector('.icon')) {
+			const icon = detail.querySelector('.icon').cloneNode(true);
+			icon.setAttribute('width', '1em');
+			icon.setAttribute('height', '1em');
+			icon.classList.remove('icon');
+			icon.classList.add('titlebar-icon');
+		}
 		// get titlebar title
 		const title = `${icon.outerHTML}<div>${detail.querySelector('.title').innerText}</div>`;
 		// spawn draggable window

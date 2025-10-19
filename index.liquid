@@ -48,7 +48,10 @@
 						<li class="details-component">
 							{% comment %} this is SUPER vulnerable to xss but I control everything :3 {% endcomment %}
 							<a target="_blank" href="{{ social.url }}" class="shale-v1-button shale-v1--secondary" {{ social.attrs | default: "" }}>
-								<svg class="icon" aria-hidden="true"><use xlink:href="#icon-{{ social.icon }}"></use></svg>
+								{% if social.icon %}
+									<svg class="icon" aria-hidden="true"><use xlink:href="#icon-{{ social.icon }}"></use></svg>
+								{% endif %}
+
 								<div class="text">
 									<strong class="title">{{ social.name }}</strong>
 									<em>{{ social.text }}</em>
@@ -66,7 +69,10 @@
 						<li class="details-component wide">
 							{% comment %} this is SUPER vulnerable to xss but I control everything :3 {% endcomment %}
 							<a href="{{ gadget.url }}" class="shale-v1-button shale-v1--secondary" {{ gadget.attrs | default: "" }}>
-								<svg class="icon" aria-hidden="true"><use xlink:href="#icon-{{ gadget.icon }}"></use></svg>
+								{% if gadget.icon %}
+									<svg class="icon" aria-hidden="true"><use xlink:href="#icon-{{ gadget.icon }}"></use></svg>
+								{% endif %}
+
 								<div class="text">
 									<strong class="title">{{ gadget.name }}</strong>
 									{{ gadget.text }}
@@ -83,7 +89,11 @@
 						{% for projects in site.projects %}
 						<li class="details-component">
 							{% comment %} this is SUPER vulnerable to xss but I control everything :3 {% endcomment %}
-							<a href="{{ projects.url }}" class="no-icon shale-v1-button shale-v1--secondary" target="_blank" {{ projects.attrs | default: "" }}>
+							<a href="{{ projects.url }}" class="shale-v1-button shale-v1--secondary" target="_blank" {{ projects.attrs | default: "" }}>
+								{% if project.icon %}
+									<svg class="icon" aria-hidden="true"><use xlink:href="#icon-{{ project.icon }}"></use></svg>
+								{% endif %}
+
 								<div class="text">
 									<strong class="title">{{ projects.name }}</strong>
 									{{ projects.text }}
@@ -101,7 +111,9 @@
 						<li class="details-component wide">
 							{% comment %} this is SUPER vulnerable to xss but I control everything :3 {% endcomment %}
 							<a href="{{ archive.url }}" class="shale-v1-button shale-v1--secondary" {{ archive.attrs | default: "" }}>
-								<svg class="icon" aria-hidden="true"><use xlink:href="#icon-{{ archive.icon }}"></use></svg>
+								{% if archive.icon %}
+									<svg class="icon" aria-hidden="true"><use xlink:href="#icon-{{ archive.icon }}"></use></svg>
+								{% endif %}
 								<div class="text">
 									<strong class="title">{{ archive.name }}</strong>
 									{{ archive.text }}
