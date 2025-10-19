@@ -7,7 +7,14 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" crossorigin="anonymous" referrerpolicy="no-referrer">
 		<link rel="preconnect" href="https://picsum.photos" crossorigin>
-		<link rel="stylesheet" href="assets/styles.css">
+
+		{% capture css %}
+			{% include "./_data/site-base.css" %}
+		{% endcapture %}
+		<style>
+			{{ css | cssmin }}
+		</style>
+
 		<link rel="stylesheet" href="https://logonoff.co/shalecss/build/shale.css">
 		<link rel="preload" href="assets/desktop.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> <!-- css only required if js is on -->
 		<link rel="preload" href="assets/aurora.svg" as="image" type="image/svg+xml">
@@ -33,7 +40,7 @@
 
 			<div class="panel">
 				<section><details open>
-					<summary class="shale-v1-button shale-v1--secondary"><h2>Socials</h2></summary>
+					<summary class="shale-v1-button shale-v1--secondary"><h2>Socials ({{ site.socials | size }})</h2></summary>
 					<ul>
 						{% for social in site.socials %}
 						<li class="details-component">
@@ -51,7 +58,7 @@
 				</details></section>
 
 				<section><details open id="gadgets" data-open-in-window>
-					<summary class="shale-v1-button shale-v1--secondary"><h2>Gadgets</h2></summary>
+					<summary class="shale-v1-button shale-v1--secondary"><h2>Gadgets ({{ site.gadgets | size }})</h2></summary>
 					<ul>
 						{% for gadget in site.gadgets %}
 						<li class="details-component wide">
@@ -69,7 +76,7 @@
 				</details></section>
 
 				<section><details open id="Projects" data-open-in-window>
-					<summary class="shale-v1-button shale-v1--secondary"><h2>Projects</h2></summary>
+					<summary class="shale-v1-button shale-v1--secondary"><h2>Projects ({{ site.projects | size }})</h2></summary>
 					<ul>
 						{% for projects in site.projects %}
 						<li class="details-component">
@@ -86,7 +93,7 @@
 				</details></section>
 
 				<section><details open id="archive" data-open-in-window>
-					<summary class="shale-v1-button shale-v1--secondary"><h2>Archive</h2></summary>
+					<summary class="shale-v1-button shale-v1--secondary"><h2>Archive ({{ site.archive | size }})</h2></summary>
 					<ul>
 						{% for archive in site.archive %}
 						<li class="details-component wide">
@@ -147,12 +154,5 @@
 		</template>
 
 		<script src="assets/desktop.js" defer></script>
-		<script>
-			document.querySelectorAll("section details summary h2").forEach((e) => {
-				const li = e.closest("section").querySelectorAll("li");
-				e.ariaLabel = `${e.innerText} (${li.length} items)`;
-				e.innerText += ` (${li.length})`;
-			});
-		</script>
 	</body>
 </html>

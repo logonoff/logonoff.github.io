@@ -17,6 +17,11 @@ export default defineConfig(config => {
 		}
 	});
 
+	/** CSS minifier */
+	config.addFilter("cssmin", (css) => {
+		return css.split('\n').map(line => line.trim()).join('');
+	});
+
 	/** Passthrough Copy **/
 	// Copy `assets/` to `_site/assets`
 	config.addPassthroughCopy("assets");
