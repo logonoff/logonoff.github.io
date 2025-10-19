@@ -3,20 +3,20 @@
 	<head>
 		<meta charset="utf-8">
 		<title>logonoff</title>
-		<link rel="icon" href="profile/profile.png" type="image/png">
+		<link rel="icon" href="assets/profile/profile.png" type="image/png">
 		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" crossorigin="anonymous" referrerpolicy="no-referrer">
 		<link rel="preconnect" href="https://picsum.photos" crossorigin>
 
-		{% capture css %}
-			{% include "./_data/site-base.css" %}
-		{% endcapture %}
-		<style>
-			{{ css | cssmin }}
-		</style>
+		{% comment %} inline site-base.css because it's render blocking and small {% endcomment %}
+		{% capture css %}{% include "./_data/site-base.css" %}{% endcapture %}
+		<style>{{ css | cssmin }}</style>
 
 		<link rel="stylesheet" href="https://logonoff.co/shalecss/build/shale.css">
-		<link rel="preload" href="assets/desktop.css" as="style" onload="this.onload=null;this.rel='stylesheet'"> <!-- css only required if js is on -->
+
+		{% comment %} css only required if desktop.js is loaded {% endcomment %}
+		<link rel="preload" href="assets/desktop.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
 		<link rel="preload" href="assets/aurora.svg" as="image" type="image/svg+xml">
 		<meta name="description" content="the internet website of logonoff on the world wide web">
 		<meta name="google-site-verification" content="gIfZkEaMyoiVrpRaKjYiThqW7ahq__mzrdLEzzeBl7s">
@@ -29,9 +29,11 @@
 
 		<main class="card">
 			<section class="aurora-panel">
-				<!-- <div class="left">
-					<img class="profile" src="profile/profile.png" alt="profile">
-				</div> -->
+				{% comment %}
+					<div class="left">
+						<img class="profile" src="assets/profile/profile.png" alt="profile">
+					</div>
+				{% endcomment %}
 				<div class="right">
 					<h1>logonoff</h1>
 					<p>I do things. You may view the things I do below.<br></p>
@@ -75,7 +77,7 @@
 					</ul>
 				</details></section>
 
-				<section><details open id="Projects" data-open-in-window>
+				<section><details open id="projects" data-open-in-window>
 					<summary class="shale-v1-button shale-v1--secondary"><h2>Projects ({{ site.projects | size }})</h2></summary>
 					<ul>
 						{% for projects in site.projects %}

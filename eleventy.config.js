@@ -1,5 +1,11 @@
 import { defineConfig } from '11ty.ts'; // i'm shocked we need this T_T
-import htmlmin from "html-minifier";
+
+/**
+ * naive way of minifying code by removing new lines and trimming spaces
+ * @param {string} code
+ * @returns {string} propeller hat and comically large lollipop (due to naivety)
+ */
+const minify = code => code.split('\n').map(line => line.trim()).join('');
 
 export default defineConfig(config => {
 	// Output directory: _site
@@ -8,26 +14,18 @@ export default defineConfig(config => {
 	config.addTransform("minify", (content, outputPath) => {
 		switch (outputPath ? outputPath.split('.').pop() : null) {
 			case "html":
-				return htmlmin.minify(content, {
-					removeComments: true,
-					collapseWhitespace: true,
-				});
+				return minify(content);
 			default:
 				return content;
 		}
 	});
 
 	/** CSS minifier */
-	config.addFilter("cssmin", (css) => {
-		return css.split('\n').map(line => line.trim()).join('');
-	});
+	config.addFilter("cssmin", minify);
 
 	/** Passthrough Copy **/
 	// Copy `assets/` to `_site/assets`
 	config.addPassthroughCopy("assets");
-
-	// Copy `profile/` to `_site/profile`
-	config.addPassthroughCopy("profile");
 
 	// Copy `projects/` to `_site/projects`
 	config.addPassthroughCopy("projects");
