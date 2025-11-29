@@ -29,11 +29,11 @@ jobs:
     steps:
       # build
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # https://github.com/actions/setup-node/issues/531 ugh
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           package-manager-cache: false
           node-version: "lts/*"
