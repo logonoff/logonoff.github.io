@@ -36,6 +36,7 @@ export default defineConfig(config => {
 	// copy static files root
 	config.addPassthroughCopy(".well-known");
 	config.addPassthroughCopy("favicon.ico");
+	config.addPassthroughCopy("icons.svg");
 	config.addPassthroughCopy("jason.json");
 	config.addPassthroughCopy("robots.txt");
 });
