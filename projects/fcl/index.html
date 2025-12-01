@@ -20,25 +20,18 @@
 
 	<body>
 		<form onsubmit="return false;" class="shale-v1-flex-form">
-			<div class="shale-v1-input">
-				<label for="cow">cow</label>
-				<span class="shale-v1-select">
-					<select id="cow" onchange="update();">
-						<option value="random">random</option>
-					</select>
-				</span>
+			<div class="shale-v1-select">
+				<select id="cow" onchange="update();">
+					<option value="random">random</option>
+				</select>
 			</div>
 			<div class="shale-v1-input">
-				<label for="eyes">eyes</label>
-				<input type="text" id="eyes" placeholder="eyes" value="oo" onchange="update();">
+				<input type="text" id="eyes" placeholder="eyes" onchange="update();">
 			</div>
 			<div class="shale-v1-input">
-				<label for="tongue">tongue</label>
-				<input type="text" id="tongue" placeholder="tongue" value="U" onchange="update();">
+				<input type="text" id="tongue" placeholder="tongue" onchange="update();">
 			</div>
-			<div class="shale-v1-input">
-				<button class="shale-v1-button" onclick="update();">check your fortune for the day</button>
-			</div>
+			<button class="shale-v1-button" onclick="update();">check your fortune for the day</button>
 		</form>
 
 		<pre id="fcl"></pre>
