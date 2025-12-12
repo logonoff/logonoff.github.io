@@ -1,54 +1,24 @@
 body {
     --taskbar-height: 3rem;
-    --titlebar-padding: 0.55em;
 }
 
 .titlebar {
-    box-shadow: none;
-    box-sizing: border-box;
     cursor: move;
-    display: flex;
-    flex-direction: column;
-    height: 2rem;
-    justify-content: space-between;
 
     & .titlebar-title {
         align-items: center;
-        padding: var(--titlebar-padding);
         display: flex;
-        flex-grow: 1;
         font-size: 1rem;
-        height: 1rem;
-        font-weight: normal;
-        gap: 0.5em;
-        margin: 0;
-    }
-
-    & svg {
-        fill: #fff;
-    }
-
-    & .icon {
-        cursor: inherit;
-        float: left;
-        left: var(--titlebar-padding);
-        line-height: 1em;
-        padding: var(--titlebar-padding);
-        position: absolute;
+        gap: 0.5rem;
+        padding-left: 0;
     }
 
     & .buttons {
-        cursor: pointer;
-        margin: 0;
-        line-height: 1em;
-        height: 2rem;
-        list-style: none;
-        gap: calc(var(--titlebar-padding) / 2);
+        cursor: default;
 
-        > .caption-button {
-            padding: var(--titlebar-padding);
-            height: 1rem;
-            width: 1rem;
+        & button {
+            cursor: pointer;
+            display: flex;
         }
     }
 }
@@ -93,7 +63,8 @@ body {
     width: 100vw;
 
     & .content {
-        height: calc(100vh - var(--titlebar-padding) * 2 - var(--taskbar-height) - 1rem);
+        /* 2.25rem is shale.css compat titlebar height */
+        height: calc(100vh - 2.25rem - var(--taskbar-height));
         resize: none;
         width: 100%;
     }
