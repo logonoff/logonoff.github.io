@@ -44,6 +44,17 @@
 				<section><details open>
 					<summary class="shale-v1-button shale-v1--secondary"><h2>Socials ({{ site.socials | size }})</h2></summary>
 					<ul>
+						<li class="details-component" data-open-in-window>
+							<a href="https://guestbook.logonoff.co" class="shale-v1-button shale-v1--secondary" data-requested-width='700' data-requested-height='500'>
+								<svg class="icon" aria-hidden="true"><use xlink:href="#icon-email"></use></svg>
+
+								<div class="text">
+									<strong class="title">Guestbook</strong>
+									Sign my guestbook!
+								</div>
+							</a>
+						</li>
+
 						{% for social in site.socials %}
 						<li class="details-component">
 							{% comment %} this is SUPER vulnerable to xss but I control everything :3 {% endcomment %}

@@ -24,12 +24,6 @@
       "url": "https://www.youtube.com/@logonoff",
       "icon": "youtube",
       "text": "@logonoff"
-    },
-    {
-      "name": "Email",
-      "url": "mailto:hello@logonoff.co",
-      "icon": "email",
-      "text": "hello@logonoff.co"
     }
   ],
   "gadgets": [
