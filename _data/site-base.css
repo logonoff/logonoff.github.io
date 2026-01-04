@@ -357,6 +357,12 @@ a[target="_blank"]:not(.no-icon a) .title::after {
         }
     }
 
+    &.glass {
+        & .content {
+            background: transparent;
+        }
+    }
+
     &.minimized {
         display: none;
     }

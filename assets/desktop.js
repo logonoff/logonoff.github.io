@@ -43,14 +43,13 @@ document.body.appendChild(snapIndicator);
  * @param {string} id
  */
 const closeWindow = (id) => {
+	unfocusWindow(id);
 	openWindows.delete(id);
 
 	// target .window
 	document.getElementById(id).remove();
 	// target .taskbar-list-item li
 	document.getElementById('taskbar-' + id).parentElement.remove();
-
-	unfocusWindow(id);
 
 	// all windows are closed, so there are no more z-indexes to track
 	openWindows.size === 0 && setHighestZ(0);
@@ -132,9 +131,13 @@ const closestId = (elem) => {
 
 /**
  * Set the focus to the window with the given id
- * @param {string} id
+ * @param {string?} id
  */
 const setFocus = (id) => {
+	if (!id || !openWindows.has(id)) {
+		return;
+	}
+
 	focusedWindows.push(id);
 	// set the focus
 	const elem = document.getElementById(id);
@@ -155,20 +158,32 @@ const setFocus = (id) => {
 
 /**
  * Generates a draggable window with an iframe inside
- * @param {string} url url to load in the iframe
- * @param {string?} title title of the window
- * @param {number?} top initial top position
- * @param {number?} left initial left position
- * @param {string?} templateId element id of the template to use
- * @param {boolean?} noClose if true, the window will not close
- * @param {boolean?} maximized if true, the window will be maximized
- * @param {number?} width the requested width of the window in px
- * @param {number?} height the requested height of the window in px
+ * @param {object} options options for the window
+ *
+ * @param {string} options.url url to load in the iframe
+ * @param {string?} options.title title of the window
+ * @param {string?} options.templateId element id of the template to use
+ * @param {number?} options.width the requested width of the window in px
+ * @param {number?} options.height the requested height of the window in px
+ * @param {boolean?} options.maximized if true, the window will be maximized
+ * @param {number?} options.top initial top position
+ * @param {number?} options.left initial left position
+ * @param {boolean?} options.noClose if true, the window will not close
+ * @param {boolean?} options.glass wether the content should be glassy
  * @returns the id of the window element
  */
-const spawnDraggable = (url, title, top, left, templateId, noClose, maximized, width = 300, height = 150) => {
-	if (!templateId) { templateId = 'window-template'; }
-
+const spawnDraggable = ({
+	url = "about:blank",
+	title = url,
+	templateId = 'window-template',
+	width = 300,
+	height = 150,
+	maximized = false,
+	top = Math.max(Math.floor(Math.random() * document.body.clientHeight - (height ?? 0)), 0),
+	left = Math.max(Math.floor(Math.random() * document.body.clientWidth - (width ?? 0)), 0),
+	noClose = false,
+	glass = false,
+}) => {
 	/** @type {HTMLTemplateElement} */
 	const template = document.getElementById(templateId);
 
@@ -189,20 +204,15 @@ const spawnDraggable = (url, title, top, left, templateId, noClose, maximized, w
 
 	const elem = document.getElementById(id);
 
-	if (top) {
-		elem.style.setProperty('--top', top + 'px');
-	} else {
-		elem.style.setProperty('--top', Math.max(Math.floor(Math.random() * document.body.clientHeight - (height ?? 0)), 0) + 'px');
-	}
-
-	if (left) {
-		elem.style.setProperty('--left', left + 'px');
-	} else {
-		elem.style.setProperty('--left', Math.max(Math.floor(Math.random() * document.body.clientWidth - (width ?? 0)), 0) + 'px');
-	}
+	elem.style.setProperty('--top', top + 'px');
+	elem.style.setProperty('--left', left + 'px');
 
 	if (elem.querySelector('iframe')) {
 		elem.querySelector('iframe').src = url;
+	}
+
+	if (glass) {
+		elem.classList.add('glass');
 	}
 
 	if (width) {
@@ -213,15 +223,13 @@ const spawnDraggable = (url, title, top, left, templateId, noClose, maximized, w
 		elem.querySelector('.content').style.height = Math.min(height, window.innerHeight) + 'px';
 	}
 
-	if (!title) { title = url; }
-
 	if (elem.querySelector('.titlebar .titlebar-title')) {
 		// vulnerable to XSS but I control the HTML
 		elem.querySelector('.titlebar .titlebar-title').innerHTML = title;
 		elem.querySelector('.titlebar .titlebar-title').id = 'title-' + id;
 	}
 
-	// add aira to iframe
+	// add aria to iframe
 	elem.querySelector('iframe').setAttribute('aria-labelledby', 'title-' + id);
 	elem.setAttribute('aria-labelledby', 'title-' + id);
 
@@ -413,15 +421,14 @@ allDetails.forEach((detail) => {
 		// get titlebar title
 		const title = `${icon.outerHTML}<div>${detail.querySelector('.title').innerText}</div>`;
 		// spawn draggable window
-		spawnDraggable(detail.href,
-		               title,
-					   undefined,
-					   undefined,
-					   undefined,
-					   undefined,
-					   detail.dataset.openFullscreen,
-					   detail.dataset.requestedWidth,
-					   detail.dataset.requestedHeight);
+		spawnDraggable({
+			url: detail.href,
+			title: title,
+			maximized: detail.dataset.openFullscreen,
+			width: detail.dataset.requestedWidth,
+			height: detail.dataset.requestedHeight,
+			glass: detail.dataset.glass
+		});
 	});
 });
 
