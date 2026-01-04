@@ -34,8 +34,7 @@ const isMobile = () => {
 
 // place global snap indicator to DOM
 const snapIndicator = document.createElement('div');
-snapIndicator.classList.add('snap');
-snapIndicator.classList.add('glass');
+snapIndicator.className = 'snap glass';
 document.body.appendChild(snapIndicator);
 
 /**
@@ -301,36 +300,24 @@ const spawnTaskbarItem = (id, title, noClose) => {
 
 /**
  * Makes an element draggable
- * @link https://www.w3schools.com/howto/howto_js_draggable.asp
- * @param {Element} element
+ * @param {HTMLElement} element
  */
 const dragElement = (element) => {
-	var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+	var offsetX = 0, offsetY = 0;
 	var snap = "";
 
-	// the header is where you move the DIV from:
-	if (element.querySelector(".titlebar-title")) {
-		element.querySelector(".titlebar-title").onmousedown = (e) => { dragMouseDown(e); unMaximize(e) };
-		element.querySelector(".titlebar-title").ontouchstart = (e) => { dragMouseDown(e); unMaximize(e.touches[0]) };
-	}
+	/** @param {PointerEvent} e */
+	const unMaximize = (e) => {
+		if (!(e.target instanceof HTMLElement)) {
+			console.error("unMaximize: Event target is not an HTMLElement");
+			return;
+		}
 
-	function dragMouseDown(e) {
-		// get the mouse cursor position at startup:
-		pos3 = e.clientX;
-		pos4 = e.clientY;
-		document.onmouseup = closeDragElement;
-		document.ontouchend = closeDragElement;
-		// call a function whenever the cursor moves:
-		document.onmousemove = elementDrag;
-		document.ontouchmove = (e) => elementDrag(e.touches[0]);
-	}
-
-	function unMaximize (e) {
 		// unmaximize the window if it is maximized
 		if (element.classList.contains('maximized')) {
 			// get the position of the mouse relative to the window in percentage
-			let x = (e.clientX - element.offsetLeft) / element.clientWidth;
-			let y = (e.clientY - element.offsetTop) / element.clientHeight;
+			const x = (e.clientX - element.offsetLeft) / element.clientWidth,
+			      y = (e.clientY - element.offsetTop) / element.clientHeight;
 
 			// unmaximize the window
 			toggleMaximize(element.id);
@@ -338,48 +325,65 @@ const dragElement = (element) => {
 			// remove snap if it is set
 			element.style.width = "";
 
+			// calculate new position
+			const newLeft = e.clientX - x * element.clientWidth,
+			      newTop = e.clientY - y * element.clientHeight;
+
 			// set the window to the position of the mouse
-			element.style.setProperty('--left', (e.clientX - x * element.clientWidth) + "px");
-			element.style.setProperty('--top', (e.clientY - y * element.clientHeight) + "px");
+			element.style.setProperty('--left', `${newLeft}px`);
+			element.style.setProperty('--top', `${newTop}px`);
+
+			// recalculate offset based on new position
+			offsetX = e.clientX - newLeft;
+			offsetY = e.clientY - newTop;
 		}
 	}
 
-	function elementDrag(e) {
-		// calculate the new cursor position:
-		pos1 = pos3 - e.clientX;
-		pos2 = pos4 - e.clientY;
-		pos3 = e.clientX;
-		pos4 = e.clientY;
+	/** @param {PointerEvent} e */
+	 const elementDrag = (e) => {
+		if (!(e.target instanceof HTMLElement)) {
+			console.error("elementDrag: Event target is not an HTMLElement");
+			return;
+		}
 
-		// check out of bounds based on cursor position
-		if (element.offsetTop - pos2 < 0) {
+		// calculate new position directly from mouse position and initial offset:
+		const newLeft = e.clientX - offsetX, newTop = e.clientY - offsetY;
+
+		// check out of bounds based on new position
+		if (newTop < 0) {
 			snap = "top";
-			snapIndicator.classList = 'snap glass visible top';
-		} else if (element.offsetLeft - pos1 < 0) {
+			snapIndicator.className = 'snap glass visible top';
+			snapIndicator.style.setProperty('--left', '0');
+		} else if (newLeft < 0) {
 			snap = "left";
-			snapIndicator.classList = 'snap glass visible left';
-		} else if (element.offsetLeft + element.offsetWidth - pos1 > window.innerWidth) {
+			snapIndicator.className = 'snap glass visible left';
+			snapIndicator.style.setProperty('--left', '0');
+		} else if (newLeft + element.offsetWidth > window.innerWidth) {
 			snap = "right";
-			snapIndicator.classList = 'snap glass visible right';
-			snapIndicator.style.setProperty('--left', '50%'); // parallax
+			snapIndicator.className = 'snap glass visible right';
+			snapIndicator.style.setProperty('--left', '50%'); // for glass streak parallax
 		} else {
 			snap = "";
-			snapIndicator.classList = 'snap glass';
+			snapIndicator.className = 'snap glass';
 			snapIndicator.style.removeProperty('--left');
 		}
 
 		// set the element's new position:
-		element.style.setProperty('--top', (element.offsetTop - pos2) + "px");
-		element.style.setProperty('--left', (element.offsetLeft - pos1) + "px");
+		element.style.setProperty('--top', `${newTop}px`);
+		element.style.setProperty('--left', `${newLeft}px`);
 	}
 
-	function closeDragElement() {
-		if (snap != "") {
-			// maximize the window
-			if (!element.classList.contains('maximized')) {
+	/** @param {PointerEvent} e */
+	const closeDragElement = (e) => {
+		if (!(e.target instanceof HTMLElement)) {
+			console.error("closeDragElement: Event target is not an HTMLElement");
+			return;
+		}
+
+		if (snap !== "") {
+			if (!element.classList.contains('maximized')) { // maximize the window
 				toggleMaximize(element.id);
 			}
-
 			if (snap === "right") { // snap to right snaps to the right
 				element.style.setProperty('--left', '50%');
 				element.style.width = "50%";
@@ -390,13 +394,34 @@ const dragElement = (element) => {
 			}
 		}
 
-		snapIndicator.classList = 'snap';
+		snapIndicator.className = 'snap glass'; // hide snap indicator
 
-		// stop moving when mouse button is released:
-		document.onmouseup = null;
-		document.onmousemove = null;
-		document.ontouchend = null;
-		document.ontouchmove = null;
+		// stop moving when pointer is released
+		e.target.onpointermove = null;
+		e.target.onpointerup = e.target.onpointercancel = null;
+	}
+
+	/** @param {PointerEvent} e */
+	const dragPointerDown = (e) => {
+		if (!(e.target instanceof HTMLElement)) {
+			console.error("dragPointerDown: Event target is not an HTMLElement");
+			return;
+		}
+		// capture pointer to receive events even when moving fast
+		e.target.setPointerCapture(e.pointerId);
+		// store the offset from pointer to element corner at startup:
+		offsetX = e.clientX - element.offsetLeft;
+		offsetY = e.clientY - element.offsetTop;
+		// attach drag listeners
+		e.target.onpointermove = elementDrag;
+		e.target.onpointerup = e.target.onpointercancel = closeDragElement;
+	}
+
+	// the header is where you move the DIV from:
+	/** @type {HTMLElement} */
+	const titlebar = element.querySelector(".titlebar-title");
+	if (titlebar) {
+		titlebar.onpointerdown = (e) => { dragPointerDown(e); unMaximize(e) };
 	}
 }
 
