@@ -43,14 +43,16 @@ document.body.appendChild(snapIndicator);
  * @param {string} id
  */
 const closeWindow = (id) => {
-	const elem = document.getElementById(id);
-	elem.remove();
 	openWindows.delete(id);
-	document.getElementById('taskbar-' + id).remove();
+
+	// target .window
+	document.getElementById(id).remove();
+	// target .taskbar-list-item li
+	document.getElementById('taskbar-' + id).parentElement.remove();
 
 	unfocusWindow(id);
 
-	// if all windows are closed, reset z-index
+	// all windows are closed, so there are no more z-indexes to track
 	openWindows.size === 0 && setHighestZ(0);
 }
 
