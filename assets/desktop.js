@@ -35,6 +35,7 @@ const isMobile = () => {
 // place global snap indicator to DOM
 const snapIndicator = document.createElement('div');
 snapIndicator.classList.add('snap');
+snapIndicator.classList.add('glass');
 document.body.appendChild(snapIndicator);
 
 /**
@@ -69,8 +70,8 @@ const toggleMaximize = (id) => {
 	if (maximized) {
 		dragElement(elem);
 		// restore old position
-		elem.style.top = elem.dataset.top;
-		elem.style.left = elem.dataset.left;
+		elem.style.setProperty('--top', elem.dataset.top);
+		elem.style.setProperty('--left', elem.dataset.left);
 		elem.removeAttribute("data-top");
 		elem.removeAttribute("data-left");
 
@@ -83,10 +84,10 @@ const toggleMaximize = (id) => {
 		elem.querySelector(".maximize").innerHTML = '<svg width="1em" height="1em"><use xlink:href="#icon-maximize"></use></svg>';
 	} else {
 		// save old position and then move to top left
-		elem.dataset.top = elem.style.top;
-		elem.dataset.left = elem.style.left;
-		elem.style.top = '0px';
-		elem.style.left = '0px';
+		elem.dataset.top = getComputedStyle(elem).getPropertyValue('--top');
+		elem.dataset.left = getComputedStyle(elem).getPropertyValue('--left');
+		elem.style.setProperty('--top', '0px');
+		elem.style.setProperty('--left', '0px');
 
 		// save old size and then maximize
 		content.dataset.width = content.style.width;
@@ -98,16 +99,16 @@ const toggleMaximize = (id) => {
 
 	// make sure window stays in bounds
 	if (elem.offsetTop < 0) {
-		elem.style.top = "0px";
+		elem.style.setProperty('--top', "0px");
 	}
 	if (elem.offsetLeft < 0) {
-		elem.style.left = "0px";
+		elem.style.setProperty('--left', "0px");
 	}
 	if (elem.offsetTop + elem.offsetHeight > window.innerHeight) {
-		elem.style.top = window.innerHeight - elem.offsetHeight + "px";
+		elem.style.setProperty('--top', window.innerHeight - elem.offsetHeight + "px");
 	}
 	if (elem.offsetLeft + elem.offsetWidth > window.innerWidth) {
-		elem.style.left = window.innerWidth - elem.offsetWidth + "px";
+		elem.style.setProperty('--left', window.innerWidth - elem.offsetWidth + "px");
 	}
 }
 
@@ -187,15 +188,15 @@ const spawnDraggable = (url, title, top, left, templateId, noClose, maximized, w
 	const elem = document.getElementById(id);
 
 	if (top) {
-		elem.style.top = top + 'px';
+		elem.style.setProperty('--top', top + 'px');
 	} else {
-		elem.style.top = Math.max(Math.floor(Math.random() * document.body.clientHeight - (height ?? 0)), 0) + 'px';
+		elem.style.setProperty('--top', Math.max(Math.floor(Math.random() * document.body.clientHeight - (height ?? 0)), 0) + 'px');
 	}
 
 	if (left) {
-		elem.style.left = left + 'px';
+		elem.style.setProperty('--left', left + 'px');
 	} else {
-		elem.style.left = Math.max(Math.floor(Math.random() * document.body.clientWidth - (width ?? 0)), 0) + 'px';
+		elem.style.setProperty('--left', Math.max(Math.floor(Math.random() * document.body.clientWidth - (width ?? 0)), 0) + 'px');
 	}
 
 	if (elem.querySelector('iframe')) {
@@ -328,8 +329,8 @@ const dragElement = (element) => {
 			element.style.width = "";
 
 			// set the window to the position of the mouse
-			element.style.left = (e.clientX - x * element.clientWidth) + "px";
-			element.style.top = (e.clientY - y * element.clientHeight) + "px";
+			element.style.setProperty('--left', (e.clientX - x * element.clientWidth) + "px");
+			element.style.setProperty('--top', (e.clientY - y * element.clientHeight) + "px");
 		}
 	}
 
@@ -343,21 +344,23 @@ const dragElement = (element) => {
 		// check out of bounds based on cursor position
 		if (element.offsetTop - pos2 < 0) {
 			snap = "top";
-			snapIndicator.classList = 'snap visible top';
+			snapIndicator.classList = 'snap glass visible top';
 		} else if (element.offsetLeft - pos1 < 0) {
 			snap = "left";
-			snapIndicator.classList = 'snap visible left';
+			snapIndicator.classList = 'snap glass visible left';
 		} else if (element.offsetLeft + element.offsetWidth - pos1 > window.innerWidth) {
 			snap = "right";
-			snapIndicator.classList = 'snap visible right';
+			snapIndicator.classList = 'snap glass visible right';
+			snapIndicator.style.setProperty('--left', '50%'); // parallax
 		} else {
 			snap = "";
-			snapIndicator.classList = 'snap';
+			snapIndicator.classList = 'snap glass';
+			snapIndicator.style.removeProperty('--left');
 		}
 
 		// set the element's new position:
-		element.style.top = (element.offsetTop - pos2) + "px";
-		element.style.left = (element.offsetLeft - pos1) + "px";
+		element.style.setProperty('--top', (element.offsetTop - pos2) + "px");
+		element.style.setProperty('--left', (element.offsetLeft - pos1) + "px");
 	}
 
 	function closeDragElement() {
@@ -368,11 +371,11 @@ const dragElement = (element) => {
 			}
 
 			if (snap === "right") { // snap to right snaps to the right
-				element.style.left = "50%";
+				element.style.setProperty('--left', '50%');
 				element.style.width = "50%";
 			}
 			else if (snap === "left") { // snap to left snaps to the left
-				element.style.left = "0px";
+				element.style.setProperty('--left', '0');
 				element.style.width = "50%";
 			}
 		}
@@ -419,3 +422,25 @@ allDetails.forEach((detail) => {
 					   detail.dataset.requestedHeight);
 	});
 });
+
+/* konami code accent colour rainbow */
+(function() {
+  const KONAMI = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+  let pos = 0;
+
+  document.addEventListener("keydown", (e) => {
+    pos = e.key === KONAMI[pos] ? pos + 1 : 0;
+    if (pos === KONAMI.length) {
+      pos = 0;
+      let hue = 0;
+      setInterval(() => {
+        hue = (hue + 1) % 360;
+        document.documentElement.style.setProperty(
+          "--shale-v1-accent",
+          `hsl(${hue}, 100%, 50%)`,
+          "important"
+        );
+      }, 20);
+    }
+  });
+})();
