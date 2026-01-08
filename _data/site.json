@@ -1,29 +1,25 @@
 {
   "socials": [
     {
-      "name": "Discord",
-      "url": "https://discord.com/users/122505347163357186",
-      "icon": "discord",
-      "text": "logonoff"
+      "name": "Guestbook",
+      "url": "https://guestbook.logonoff.co",
+      "icon": "email",
+      "text": "Sign my guestbook!",
+      "attrs": "data-requested-width='700' data-requested-height='500' data-open-in-window='yes'"
     },
     {
       "name": "GitHub",
       "url": "https://github.com/logonoff",
       "icon": "github",
-      "text": "@logonoff"
+      "text": "@logonoff",
+      "attrs": "target='_blank'"
     },
     {
       "name": "Mastodon",
       "url": "https://mastodon.social/@logonoff",
       "icon": "mastodon",
       "text": "@logonoff",
-      "attrs": "rel='me'"
-    },
-    {
-      "name": "YouTube",
-      "url": "https://www.youtube.com/@logonoff",
-      "icon": "youtube",
-      "text": "@logonoff"
+      "attrs": "rel='me' target='_blank'"
     }
   ],
   "gadgets": [

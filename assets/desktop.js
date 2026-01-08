@@ -428,7 +428,7 @@ const dragElement = (element) => {
 /**
  * Get all details-component and spawn windows instead of opening links
  */
-const allDetails = document.querySelectorAll('[data-open-in-window] a:not([target="_blank"])');
+const allDetails = document.querySelectorAll('[data-open-in-window] a:not([target="_blank"]), a[data-open-in-window]:not([target="_blank"])');
 
 allDetails.forEach((detail) => {
 	detail.addEventListener('click', (e) => {

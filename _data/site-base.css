@@ -248,49 +248,31 @@ a[target="_blank"]:not(.no-icon a) .title::after {
     outline: 1px solid color-mix(in srgb, var(--shale-v1-accent) 50%, var(--shale-v1-accent-dark-tint) 50%);
 
     &::before {
-      background: linear-gradient(60deg,
-        #00000000 3.5%,
-        #1c1c1c12 5.5%,
-        #71717112 7.0%,
-        #f1f1f112 9.5%,
-        #ffffff12 10.5%,
-        #00000012 11.5%,
-        #0e0e0e12 12.5%,
-        #39393912 14.0%,
-        #a6a6a614 16.0%,
-        #f5f5f519 18.0%,
-        #ffffff29 21.0%,
-        #ffffff2c 23.5%,
-        #ffffff27 26.0%,
-        #ffffff1d 29.0%,
-        #69696911 32.0%,
-        #0000000b 34.0%,
-        #00000006 37.0%,
-        #00000006 42.0%,
-        #0000000c 47.0%,
-        #bbbbbb0f 50.0%,
-        #ffffff13 54.0%,
-        #ffffff14 56.5%,
-        #1b1b1b13 58.0%,
-        #0000000e 61.0%,
-        #00000007 64.0%,
-        #ffffff03 66.0%,
-        #ffffff01 67.5%,
-        #00000000 69.0%,
-        #ffffff05 70.5%,
-        #ffffff2b 71.5%,
-        #ffffff29 72.5%,
-        #ffffff23 74.0%,
-        #00000013 76.5%,
-        #1a1a1a0a 78.5%,
-        #39393909 80.0%,
-        #8b8b8b0b 82.0%,
-        #cccccc0f 84.0%,
-        #ffffff14 86.5%,
-        #ffffff16 89.0%,
-        #ffffff15 92.0%,
-        #ffffff12 95.0%,
-        #00000000 97.0%
+      background-image: linear-gradient(61deg,
+        #0000000B 00%, #0000000B 03.6%,
+        #1919190A 03.6%, #AAAAAA06 6%, #FFFFFF01 09.1%,
+        #00000001 09.1%, #00000001 12.3%,
+        #FFFFFF01 12.3%, #7F7F7F02 14%, #3F3F3F04 16.4%,
+        #00000004 16.4%, #40404004 16.7%,
+        #FFFFFF08 17.8%, #1313130D 24.1%,
+        #FFFFFF0F 25%, #DFDFDF10 29%, #1C1C1C09 35.4%,
+        #0000000F 35.4%, #00000012 35.5%,
+        #FFFFFF17 36.3%, #FFFFFF0e 38%,
+        #00000000 39.3%, #00000000 40.7%,
+        #ffffff01 40.7%, #CCCCCC05 42.4%,
+        #00000006 43%, #00000012 45.7%,
+        #A1A1A113 46%, #FFFFFF10 49%,
+        #0000000f 50.2%, #0000000f 58.75%,
+        #FFFFFF19 59.1%, #FFFFFF2D 65%, #38383812 69.6%,
+        #00000012 67.6%, #00000000 69.9%,
+        #FFFFFF12 70.2%, #0D0D0D13 73.6%,
+        #00000013 73.6%, #00000013 74%,
+        #6B6B6B13 75%, #ffffff0D 80.3%,
+        #0000000B 80.3%, #00000006 86.2%,
+        #3F3F3F08 86.2%, #FFFFFF12 88.4%,
+        #0000000A 88.9%, #0000000A 89%,
+        #FFFFFF08 90%, #FFFFFF01 96.4%,
+        #00000000 97.4%, #00000000 100%
       );
       background-repeat: no-repeat;
       background-size: calc(100% + 50vw) calc(100% + 50vh);
@@ -439,8 +421,10 @@ a[target="_blank"]:not(.no-icon a) .title::after {
 }
 
 .snap {
-    --shale-v1-accent: white !important;
+    --shale-v1-accent: transparent !important;
     --snap-margin: 0.5rem;
+    background-color: transparent;
+    border-color: white;
     backdrop-filter: unset;
     border-radius: 5px;
     box-sizing: border-box;
