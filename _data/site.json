@@ -110,6 +110,11 @@
       "text": "Motherboard boot logo theme for grub"
     },
     {
+      "name": "SuperOpt",
+      "url": "https://logonoff.co/superopt",
+      "text": "GNOME muscle memory polyfill for macOS"
+    },
+    {
       "name": "userscripts",
       "url": "https://github.com/logonoff/userscripts",
       "text": "A bunch of userscripts for various websites"
