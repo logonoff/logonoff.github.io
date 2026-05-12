@@ -2,7 +2,7 @@ body,
 html {
     height: 100vh;
     margin: 0;
-    overflow: hidden;
+    overflow: clip;
     padding: 0;
     width: 100vw;
 }
