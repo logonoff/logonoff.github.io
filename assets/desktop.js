@@ -25,6 +25,22 @@ const setHighestZ = (highest) => {
 }
 
 /**
+ * @param {number} px
+ * @return {number} a conversion from px to vh based on the current window size
+ */
+const pxToVh = (px) => {
+	return (px / window.innerHeight) * 100;
+}
+
+/**
+ * @param {number} px
+ * @return {number} a conversion from px to vw based on the current window size
+ */
+const pxToVw = (px) => {
+	return (px / window.innerWidth) * 100;
+}
+
+/**
  * @type {boolean} if true the client is on a touch device
  */
 const isMobile = () => {
@@ -203,8 +219,8 @@ const spawnDraggable = ({
 
 	const elem = document.getElementById(id);
 
-	elem.style.setProperty('--top', top + 'px');
-	elem.style.setProperty('--left', left + 'px');
+	elem.style.setProperty('--top', `${pxToVh(top)}vh`);
+	elem.style.setProperty('--left', `${pxToVw(left)}vw`);
 
 	if (elem.querySelector('iframe')) {
 		elem.querySelector('iframe').src = url;
@@ -298,6 +314,8 @@ const spawnTaskbarItem = (id, title, noClose) => {
 	}
 }
 
+const SNAP_THRESHOLD = 20; // px distance from edge to trigger snap
+
 /**
  * Makes an element draggable
  * @param {HTMLElement} element
@@ -350,15 +368,15 @@ const dragElement = (element) => {
 		const newLeft = e.clientX - offsetX, newTop = e.clientY - offsetY;
 
 		// check out of bounds based on new position
-		if (newTop < 0) {
+		if (e.pageY < SNAP_THRESHOLD) {
 			snap = "top";
 			snapIndicator.className = 'snap glass visible top';
 			snapIndicator.style.setProperty('--left', '0');
-		} else if (newLeft < 0) {
+		} else if (e.pageX < SNAP_THRESHOLD) {
 			snap = "left";
 			snapIndicator.className = 'snap glass visible left';
 			snapIndicator.style.setProperty('--left', '0');
-		} else if (newLeft + element.offsetWidth > window.innerWidth) {
+		} else if (e.pageX > window.innerWidth - SNAP_THRESHOLD) {
 			snap = "right";
 			snapIndicator.className = 'snap glass visible right';
 			snapIndicator.style.setProperty('--left', '50%'); // for glass streak parallax
@@ -369,8 +387,9 @@ const dragElement = (element) => {
 		}
 
 		// set the element's new position:
-		element.style.setProperty('--top', `${newTop}px`);
-		element.style.setProperty('--left', `${newLeft}px`);
+		// top and left edges don't have clamping cause it's too annoying to calculate the min value
+		element.style.setProperty('--top', `min(${pxToVh(newTop)}vh, calc(100vh - ${SNAP_THRESHOLD}px))`);
+		element.style.setProperty('--left', `min(${pxToVw(newLeft)}vw, calc(100vw - ${SNAP_THRESHOLD}px))`);
 	}
 
 	/** @param {PointerEvent} e */
