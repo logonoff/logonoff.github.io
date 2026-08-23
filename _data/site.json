@@ -31,6 +31,13 @@
       "attrs": "data-requested-width='700' data-requested-height='400'"
     },
     {
+      "name": "utilpanel",
+      "url": "https://logonoff.co/utilpanel",
+      "icon": "utilpanel",
+      "text": "An assorted collection of random tools and utilities",
+      "attrs": "data-requested-width='700' data-requested-height='400'"
+    },
+    {
       "name": "emojitext",
       "url": "projects/emojitext/index.html",
       "icon": "emojitext",
