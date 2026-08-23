@@ -1,5 +1,5 @@
 /**
- * @type {string[]} list of open window ids
+ * @type {Set<string>} list of open window ids
  */
 const openWindows = new Set([]);
 

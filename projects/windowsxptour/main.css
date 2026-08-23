@@ -15,7 +15,8 @@ html, body {
 
 body {
 	background: #004d9c url("img/wallpaper.jpg") no-repeat 0 0/100vw 100vh;
-	font-family: "MS Sans Serif", Tahoma, Verdana, sans-serif;
+	font-family: "Pixelated MS Sans Serif", "MS Sans Serif", Tahoma, Verdana, sans-serif;
+	text-rendering: optimizeSpeed;
 	user-select: none;
 }
 
@@ -57,6 +58,7 @@ img { pointer-events: none; }
 		display: inline-block;
 		height: 29px;
 		width: 97px;
+		margin-right: 6px;
 	}
 
 		#start:hover {
@@ -65,7 +67,6 @@ img { pointer-events: none; }
 
 	#time {
 		background: url("img/clock.png");
-		font-family: "Pixelated MS Sans Serif";
 		border-left: #0a2e52 1px solid;
 		display: inline-block;
 		font-size: 11px;
@@ -89,20 +90,24 @@ img { pointer-events: none; }
 */
 .window:not(.active) {
 	box-shadow: inset -1px -1px #688de0, inset 1px 1px #4f53bc, inset -2px -2px #758cdd, inset 2px 2px #758cdd, inset -3px -3px #7480dc, inset 3px 3px #7480dc;
-}
 
-	.window:not(.active) .title-bar {
+	& .title-bar {
 		background: linear-gradient(
 			180deg,#98b2e8,#7a9ae0 8%,#7b97e0 40%,#82a9e9 88%,#7fa2e6 93%,#7e9de5 95%,#003dd7 96%,#7a93df);
-		border-top-color: #688de0;
-		border-left-color: #5b68cd;
-		border-right-color: #5b5ec5;
-	}
+			border-top-color: #688de0;
+			border-left-color: #5b68cd;
+			border-right-color: #5b5ec5;
+		}
 
-	.window:not(.active) .title-bar-text, .window:not(.active) .title-bar-controls {
+	& .title-bar-text, & .title-bar-controls {
 		text-shadow: none;
 		opacity: 0.6;
 	}
+}
+
+.title-bar-text {
+	font-family: "Trebuchet MS", "MS Sans Serif", Tahoma, Verdana, sans-serif;
+}
 
 #window-1 {
 	width: 503px;
@@ -123,7 +128,7 @@ img { pointer-events: none; }
 		margin:0;
 		max-height: 314px;
 		width: 100%;
-		font-size: 9pt;
+		font-size: 11px;
 		border-bottom: 1px solid #aca899;
 	}
 
@@ -133,6 +138,7 @@ img { pointer-events: none; }
 
 	& h2 {
 		font-size: 16pt;
+		font-family: "MS Sans Serif", Tahoma, Verdana, sans-serif;
 	}
 
 	& input, & label, & textarea {
@@ -147,11 +153,15 @@ img { pointer-events: none; }
 		height: 48px;
 		justify-content: flex-end;
 		margin-right: 11px;
+
+		& button {
+			font-weight: inherit;
+		}
 	}
 }
 
 
 /* https://stackoverflow.com/a/24357132 */
 span.line {
-	display: inline-block;
+	display: block;
 }
