@@ -44,7 +44,7 @@
 						</p>
 
 						<div class="field-row">
-							<input id="flash" type="radio" name="tour-choice">
+							<input id="flash" type="radio" checked name="tour-choice" onclick="updateChoices();">
 							<label for="flash"><span>
 								<span class="line">Play the animated tour that features text, animation, </span>
 								<span class="line">music, and voice narriation.</span>
@@ -52,11 +52,25 @@
 						</div>
 
 						<div class="field-row">
-							<input id="html" type="radio" name="tour-choice">
+							<input id="html" type="radio" name="tour-choice" onclick="updateChoices();">
 							<label for="html"><span>
 								<span class="line">Play the non-animated tour that features text and images</span>
 								<span class="line">only.</span>
 							</span></label>
+						</div>
+
+						<div class="field-row">
+							<label for="version"><span>
+								Tour version
+							</span></label>
+
+							<select id="version" name="version">
+								<option selected value="index">Windows XP Professional</option>
+								<option value="home">Windows XP Home Edition</option>
+								<option value="2419">Whistler build 2419</option>
+								<option value="2465">Whistler build 2465</option>
+								<option value="2474">Whistler build 2474</option>
+							</select>
 						</div>
 					</div>
 				</section>

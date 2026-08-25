@@ -78,10 +78,22 @@ onmouseup = function(e) {
 	$('.active').removeClass('active');
 };
 
-function submit() {
+function updateChoices() {
+	if (document.getElementById("html").checked) {
+		document.getElementById("version").disabled = true;
+		document.getElementById("version").value = "index";
+	}
 	if (document.getElementById("flash").checked) {
-		window.location.href = 'mmTour/index.html';
+		document.getElementById("version").disabled = false;
+	}
+}
+
+function submit() {
+	const versionValue = document.getElementById("version").value;
+
+	if (document.getElementById("flash").checked) {
+		window.location.href = `mmTour/${versionValue}.html`;
 	} else if (document.getElementById("html").checked) {
-		window.location.href = 'https://mirror0.logonoff.co/5a757eb07b9569d39d28559ff7c874622e7e6e59/rtm/htmlTour/default.htm';
+		window.location.href = `https://mirror0.logonoff.co/5a757eb07b9569d39d28559ff7c874622e7e6e59/rtm/htmlTour/default.htm`;
 	}
 }
