@@ -14,13 +14,25 @@
 	</head>
 <body>
 	type up to five fractions into any of the boxes<br>
-	<form class="shale-v1-input" action="" onsubmit="meme();return false">
-		<input type="text" placeholder="- / 30" onChange="meme();" id="k"><br><br>
-		<input type="text" placeholder="- / 30" onChange="meme();" id="a"><br><br>
-		<input type="text" placeholder="- / 15" onChange="meme();" id="c"><br><br>
-		<input type="text" placeholder="- / 15" onChange="meme();" id="t"><br><br>
-		<input type="text" placeholder="- / 10" onChange="meme();" id="s"><br><br>
-
+	<form action="" onsubmit="meme();return false">
+		<div style="display: flex; flex-direction: column; gap: 0.5em">
+		  <div class="shale-v1-input">
+		  	<input type="text" placeholder="- / 30" onChange="meme();" id="k">
+		  </div>
+		  <div class="shale-v1-input">
+		  	<input type="text" placeholder="- / 30" onChange="meme();" id="a">
+		  </div>
+		  <div class="shale-v1-input">
+		  	<input type="text" placeholder="- / 15" onChange="meme();" id="c">
+		  </div>
+		  <div class="shale-v1-input">
+		  	<input type="text" placeholder="- / 15" onChange="meme();" id="t">
+		  </div>
+		  <div class="shale-v1-input">
+		  	<input type="text" placeholder="- / 10" onChange="meme();" id="s">
+		  </div>
+		</div>
+		<br />
 		<input class="shale-v1-button" onclick="meme()" type="submit" value="find ur mark"/>
 	</form>
 

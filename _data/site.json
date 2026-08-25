@@ -45,13 +45,6 @@
       "attrs": "data-requested-width='700' data-requested-height='400'"
     },
     {
-      "name": "getpercent",
-      "url": "projects/getpercent/index.html",
-      "icon": "getpercent",
-      "text": "Calculate percentages for grades given five fractions",
-      "attrs": "data-requested-height='400'"
-    },
-    {
       "name": "isthisweird",
       "url": "projects/isthisweird/index.html",
       "icon": "isthisweird",
@@ -141,6 +134,13 @@
       "icon": "xptour",
       "text": "Windows XP Tour Simulator",
       "attrs": "data-open-fullscreen='yes please'"
+    },
+    {
+      "name": "getpercent",
+      "url": "projects/getpercent/index.html",
+      "icon": "getpercent",
+      "text": "Calculate percentages for grades given five fractions",
+      "attrs": "data-requested-height='400'"
     },
     {
       "name": "reidfilter",

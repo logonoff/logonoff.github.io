@@ -16,18 +16,19 @@
 
 	<body>
 		<form action="" onsubmit="meme();return false">
-			<div class="shale-v1-input">
-				<input type="text" id="input" name="input" placeholder="input" onkeyup="meme();" onkeydown="meme();" pattern="^[a-zA-Z0-9 ]+$"><br><br>
+			<div style="display: flex; flex-direction: column; gap: 0.5em">
+			 <div class="shale-v1-input">
+			 	<input type="text" id="input" name="input" placeholder="input" onkeyup="meme();" onkeydown="meme();" pattern="^[a-zA-Z0-9 ]+$"><br><br>
+			 </div>
+			 <div class="shale-v1-input">
+			 	<input type="text" id="emoji" name="emoji" placeholder="emoji" onkeyup="meme();" onkeydown="meme();" required><br><br>
+			 </div>
+			 <div class="shale-v1-input">
+			 	<input type="text" id="space" name="space" placeholder="space" value="   " onkeyup="meme();" onkeydown="meme();" required><br><br>
+			 </div>
 			</div>
-			<div class="shale-v1-input">
-				<input type="text" id="emoji" name="emoji" placeholder="emoji" onkeyup="meme();" onkeydown="meme();" required><br><br>
-			</div>
-			<div class="shale-v1-input">
-				<input type="text" id="space" name="space" placeholder="space" value="   " onkeyup="meme();" onkeydown="meme();" required><br><br>
-			</div>
-			<div class="shale-v1-input">
-				<input class="shale-v1-button" type="submit" value="pain"/>
-			</div>
+			<br />
+			<input class="shale-v1-button" type="submit" value="pain"/>
 		</form>
 
 		<pre id="text" contenteditable></pre>
